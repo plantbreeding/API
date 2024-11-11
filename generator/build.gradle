@@ -1,0 +1,72 @@
+apply plugin : "java"
+ext {
+  javaMainClass = 'org.brapi.schematools.cli.BrAPICommand'
+  brapiSchemaToolsVersion = '0.10.0-SNAPSHOT'
+  brapiVersion = 'v2_1'
+}
+
+repositories {
+  mavenCentral()
+  maven {url 'https://s01.oss.sonatype.org/content/repositories/snapshots/'}
+}
+
+dependencies {
+  implementation "org.brapi:brapi-schema-tools-cli:$brapiSchemaToolsVersion"
+}
+
+tasks.register("validate", JavaExec) {
+  group = 'BrAPI'
+  description = 'Validate the Json Schema'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = javaMainClass
+  workingDir = '../'
+  args = ['validate', 'Specification/BrAPI-Schema', '-x']
+}
+
+tasks.register("generateGraphQL", JavaExec) {
+  group = 'BrAPI'
+  description = 'Generate GraphQL schema from the Json Schema'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = javaMainClass
+  workingDir = '../'
+  def filename = "Specification/Generated/brapi_" + brapiVersion + ".graphqls"
+  args = ['generate',
+          'Specification/BrAPI-Schema',
+          '-l', 'GRAPHQL',
+          '-f', filename,
+          '-x']
+}
+
+tasks.register("generateOpenAPI", JavaExec) {
+  group = 'BrAPI'
+  description = 'Generate OpenAPI schema from the Json Schema'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = javaMainClass
+  workingDir = '../'
+  def filename = "Specification/Generated/brapi_" + brapiVersion + ".json"
+  args = ['generate', 'Specification/BrAPI-Schema',
+          '-l', 'OPEN_API',
+          '-f', filename,
+          '-c', 'Specification/OpenAPI-Components',
+          '-x']
+}
+
+tasks.register("generateOWL", JavaExec) {
+  group = 'BrAPI'
+  description = 'Generate OWL schema from the Json Schema'
+  classpath = sourceSets.main.runtimeClasspath
+  mainClass = javaMainClass
+  workingDir = '../'
+  def filename = "Specification/Generated/brapi_" + brapiVersion + ".ttl"
+  args = ['generate', 'Specification/BrAPI-Schema',
+          '-l', 'OWL',
+          '-f', filename,
+          '-m', 'generator/ont-model-metadata.yaml',
+          '-x']
+}
+
+tasks.register("generateAll") {
+  dependsOn generateGraphQL
+  dependsOn generateOpenAPI
+  dependsOn generateOWL
+}
