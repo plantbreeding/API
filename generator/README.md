@@ -7,17 +7,8 @@ The files are generated in the Specification/Generated directory.
 ### How to use
 
 To generate all use the following
-
-    * In windows
-
-    ```powershell
-    ./gradlew generateAll
     ```
-
-    * In Linux or macOS
-
-    ```shell
-    ./gradle generateAll
+    ./gradlew generateAll
     ```
 For individual tasks try
 
