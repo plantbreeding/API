@@ -17,6 +17,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
       - name: Change wrapper permissions
+        working-directory: ./generator/
         run: chmod +x ./gradlew
       - name: Build with Gradle Wrapper
         working-directory: ./generator/
