@@ -99,7 +99,7 @@
                     "relationshipType": "one-to-many",
                     "referencedAttribute": "trial",
                     "items": {
-                        "$ref": "../BrAPI-Core/Trial.json#/$defs/Publications",
+                        "$ref": "../BrAPI-Core/Trial.json#/$defs/Publication",
                         "description": "Publications"
                     },
                     "title": "Publications",
@@ -233,7 +233,7 @@
                 "primaryModel": false
             }
         },
-        "Publications": {
+        "Publication": {
             "properties": {
                 "publicationPUI": {
                     "type": [
@@ -254,7 +254,7 @@
                     "referencedAttribute": "publications"
                 }
             },
-            "title": "Publications",
+            "title": "Publication",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

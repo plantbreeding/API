@@ -483,7 +483,8 @@
                     "type": [
                         "null",
                         "string"
-                    ]
+                    ],
+                    "title": "StorageTypeCode"
                 },
                 "description": {
                     "description": "A supplemental text description of the storage type",

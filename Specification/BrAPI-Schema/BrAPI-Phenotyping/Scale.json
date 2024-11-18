@@ -99,7 +99,7 @@
                     "relationshipType": "one-to-many",
                     "referencedAttribute": "validValues",
                     "items": {
-                        "$ref": "../BrAPI-Phenotyping/Scale.json#/$defs/Category",
+                        "$ref": "../BrAPI-Phenotyping/Scale.json#/$defs/ValidValuesCategory",
                         "description": "Categories"
                     },
                     "title": "Categories",
@@ -135,7 +135,7 @@
                 "primaryModel": false
             }
         },
-        "Category": {
+        "ValidValuesCategory": {
             "properties": {
                 "label": {
                     "description": "A text label for a category",
@@ -158,7 +158,7 @@
                     "referencedAttribute": "categories"
                 }
             },
-            "title": "Category",
+            "title": "ValidValuesCategory",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false
