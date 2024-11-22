@@ -65,12 +65,6 @@
                     "referencedAttribute": "germplasm",
                     "relationshipType": "many-to-one"
                 },
-                "pedigreeNode": {
-                    "$ref": "PedigreeNode.json#/$defs/PedigreeNode",
-                    "description": "The unique identifier for the node in the pedigree tree associated with a germplasm",
-                    "referencedAttribute": "germplasm",
-                    "relationshipType": "one-to-one"
-                },
                 "collection": {
                     "description": "A specific panel/collection/population name this germplasm belongs to.",
                     "type": [
