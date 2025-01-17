@@ -32,7 +32,7 @@ Old Notes
 -  URL nouns: should be plural. Keep verbs to minimum.
 -  Parameter Names : Use camel case, use appropriate suffix e.g. for a
    field that uniquely identifies a study, it should be named studyId.
--  Reponse codes: Use http error codes for protocol errors. Use
+-  Response codes: Use http error codes for protocol errors. Use
    application specific codes for business domain validation messages.
 -  Identifiers
 -  In addition to the response fields that are required, additional

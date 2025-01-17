@@ -1,0 +1,21 @@
+name: Java CI with Gradle
+
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+      - name: Change wrapper permissions
+        working-directory: ./generator/
+        run: chmod +x ./gradlew
+      - name: Build with Gradle Wrapper
+        working-directory: ./generator/
+        run: ./gradlew validate

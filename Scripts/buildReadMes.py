@@ -95,7 +95,7 @@ def buildTitleStr(path, method, params = [], deprecated = False):
 	uniquePathStr = ' /brapi/v2' + path
 	for param in params:
 		if param['in'] == 'query' :
-		    uniquePathStr += '{?' + param['name'] + '}'
+			uniquePathStr += '{?' + param['name'] + '}'
 	
 	if uniquePathStr in uniquePaths:
 		uniquePathStr += '/'

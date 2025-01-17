@@ -49,5 +49,5 @@ These are notes on how to correctly implement certain specific concepts in BrAPI
 -  :doc:`Location Coordinates <Location_Coordinates>` - Notes on use GPS Coordinates and GeoJSON
 -  :doc:`Observation Levels <Observation_Levels>` - Notes on how to represent different types of Observation Units (ie, field, plot, plant, etc)
 -  :doc:`Pagination <Pagination>` - Notes on Pagination
--  :doc:`Pedigree Tree Implementation <Pedigree_Tree>` - Guidlines for implementing a Pedigree Tree in BrAPI
+-  :doc:`Pedigree Tree Implementation <Pedigree_Tree>` - Guidelines for implementing a Pedigree Tree in BrAPI
 -  :doc:`Search Services <Search_Services>` - Notes on Search implementations

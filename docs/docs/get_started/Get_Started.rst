@@ -15,7 +15,7 @@ Get Started
 Here are some notes, tips, and tricks for getting started with the BrAPI specification. For more details, please check the 
 :doc:`Best Practices </docs/best_practices/best_practices_index>` and the 
 `BrAPI technical specification <https://brapi.org/specification>`__. If you have any questions, please feel free to 
-`contact us <https://brapi.org/contacts>`__.
+`contact us <https://brapi.org/contact>`__.
 
 -  :doc:`Reading the Specification <Get_Started_Reading_The_Spec>` - Tips on how to read the BrAPI Specification effectively 
 -  :doc:`Planning a Use Case <Get_Started_Use_Case>` - Tips for planning an API use case, sending data between two applications

@@ -8,7 +8,7 @@ Pedigree Tree
   The full network graph of related germplasm, accessions, lines, crosses, etc.
   
 Pedigree Node 
-  A single germplasm in the Pedigree Tree structure. Each Node is connected to other nodes with a Parent, Prgoeny, or Sibling 
+  A single germplasm in the Pedigree Tree structure. Each Node is connected to other nodes with a Parent, Progeny, or Sibling 
   relationship. These relationships form the edges of the Tree structure.
   
 Parent Relationship 
@@ -35,14 +35,14 @@ The endpoints ``POST /pedigree`` (upload) and ``PUT /pedigree`` (edit) are relat
 a client application to upload an array of pedigree nodes. It is then up to the server to determine if these new nodes connect 
 with any existing structures, and generate new relationships as needed. The server may also have quality filters in place to only 
 allow certain types of relationships (ie a germplasm can not be its own grandparent) and the server may respond in error if these 
-rules are violated. Similarly, ``PUT /pedigree`` allows a client application to edit existing nodes, referenceing each node by 
+rules are violated. Similarly, ``PUT /pedigree`` allows a client application to edit existing nodes, referencing each node by 
 ``germplasmDbId``. Edits may include changes to the relationships and the structure of the tree, and again it is the servers
 responsibility to generate new relationships as needed and reject submissions that violate any custom filters.
 
 The endpoints ``GET /pedigree`` and ``POST /search/pedigree`` allow a client application to retrieve nodes of an existing pedigree 
 tree. These endpoints can be more complicated to implement because they provide search parameters and controls to retrieve any 
 slice or subset of nodes from the full tree structure. These endpoints are intended to provide power and flexibility to the 
-retrieval of pedigree data, while maintaining a level of simplicity and intuitivness for the developer. 
+retrieval of pedigree data, while maintaining a level of simplicity and intuitiveness for the developer. 
 
 The endpoints ``GET /pedigree`` and ``POST /search/pedigree`` have three groups of parameters; search parameters, array control 
 parameters, and recursion control parameters. Most of the parameters for these endpoints are search parameters, including things like 
@@ -52,7 +52,7 @@ germplasm will form the base of the pedigree tree. There are three recursion con
 and ``includeFullTree``. These parameters control the recursive process of collecting additional nodes to be returned to the client.
 Starting from germplasm found by the basic search at the base of the tree, ``pedigreeDepth`` tells the server how many generations 
 of parents to collect and return. Similarly ``progenyDepth`` tells how many generations of children to return. The ``includeFullTree``
-parameter will collect all the nodes that are direct descendants or direct ancestors with the base nodes. This effectivly sets 
+parameter will collect all the nodes that are direct descendants or direct ancestors with the base nodes. This effectively sets 
 ``pedigreeDepth`` and ``progenyDepth`` to infinity without needing to know the size of the full tree ahead of time. After the base
 nodes have been found and the generation nodes have been collected recursively, the array control parameters change the structure 
 of the response JSON. The parameters ``includeParents``, ``includeProgeny``, and ``includeSiblings`` control whether or not the
@@ -68,7 +68,7 @@ Implementation Examples
    :alt: Pedigree Example
    
 This is an example of a simple pedigree with 13 germplasm over 4 generations. Below are several examples of BrAPI calls using this 
-example pedigree data. These examples are meant to illustrate how to implement the varaious endpoints, search parameters, and 
+example pedigree data. These examples are meant to illustrate how to implement the various endpoints, search parameters, and 
 controls available for BrAPI pedigrees. 
 
 
@@ -282,7 +282,7 @@ Limit Progeny Depth without Sibling data
 In this example, the client is request "2" generations of progeny data starting at ``germ03``. Starting at ``germ03`` as 
 generation "0", the recursive algorithm collects ``germ07`` and ``germ08`` as generation "1", then it collects ``germ10``, 
 ``germ11``, and ``germ13`` as generation "2". Also, ``includeSiblings`` has been set to false, so all the ``siblings`` arrays
-will be disgarded or set to null.
+will be omitted or set to null.
 
 .. code-block:: json
 
@@ -358,7 +358,7 @@ Full Tree Example with only Parents data
 
 In this example, the client has ``includeFullTree`` set to "true". This means the ``progenyDepth`` parameter is ignored and the 
 recursive algorithm will return all the generations of pedigree and progeny data starting at ``germ07``. Also, ``includeProgeny``
-and ``includeSiblings`` have both been set to false, so all the ``progeny`` and ``siblings`` arrays will be disgarded or set to 
+and ``includeSiblings`` have both been set to false, so all the ``progeny`` and ``siblings`` arrays will be omitted or set to 
 null.
 
 .. code-block:: json

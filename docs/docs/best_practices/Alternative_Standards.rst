@@ -30,7 +30,7 @@ In BrAPI V2.1, the `/events` endpoint was made compatible with the International
 MCPD
 ----
 
-Multi-Crop Passport Descriptors (MCPD) "is a widely used international standard to facilitate germplasm passport information exchange" (`bioversityinternational.org <https://www.bioversityinternational.org/e-library/publications/detail/faobioversity-multi-crop-passport-descriptors-v21-mcpd-v21/>`__). In BrAPI, the primary way to share Germplasm data is through the "GET /germplasm" endpoint. This endpoint has 24 fields out of the available 41 MCPD fields. The BrAPI specification also defines the endpoint "GET /germplasm/{germplasmDbId}/mcpd". This alternate endpoint allows a user to access all 41 MCPD compliant data points when looking at a specific germplasm entry. 
+Multi-Crop Passport Descriptors (MCPD) "is a widely used international standard to facilitate germplasm passport information exchange" (`BioversityInternational.org <https://www.bioversityinternational.org/e-library/publications/detail/faobioversity-multi-crop-passport-descriptors-v21-mcpd-v21/>`__). In BrAPI, the primary way to share Germplasm data is through the "GET /germplasm" endpoint. This endpoint has 24 fields out of the available 41 MCPD fields. The BrAPI specification also defines the endpoint "GET /germplasm/{germplasmDbId}/mcpd". This alternate endpoint allows a user to access all 41 MCPD compliant data points when looking at a specific germplasm entry. 
 
 GeoJSON
 -------

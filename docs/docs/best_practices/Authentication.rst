@@ -53,7 +53,7 @@ specification outlines four acceptable methods for exchanging the
 credentials for a token. These methods are called Grant Types and they
 are outlined in the section below.
 
-**General Recomendations**
+**General Recommendations**
 
 -  Use a reputable, 3rd party, tried and tested tool for your
    Authorization Server.
@@ -90,7 +90,11 @@ weaknesses.
 Authorization Code Grant
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-| AuthorizationCodeGrant.png Authorization Code Grant is recommended
+.. image:: images/OAuth_Authorization_Code_Grant.png
+   :width: 800
+   :alt: Authorization Code Grant
+
+Authorization Code Grant is recommended
   when the Resource Owner is a real person and the Client Application
   can not be trusted with the Resource Owners credentials, such as a web
   application. This is the recommended Grant Type for most BrAPI use
@@ -101,7 +105,11 @@ Authorization Code Grant
 Client Credentials Grant
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-| ClientCredentialstGrant.png Client Credentials Grant is recommended
+.. image:: images/OAuth_Client_Credentials_Grant.png
+   :width: 800
+   :alt: Client Credentials Grant
+
+Client Credentials Grant is recommended
   when the Client Application is the Resource Owner (such as a script or
   automatic process) and can be trusted with its own credentials. These
   credentials could be a service account username and password, a shared
@@ -114,7 +122,11 @@ Client Credentials Grant
 Implicit Grant
 ^^^^^^^^^^^^^^
 
-| ImplicitGrant.png Implicit Grant is a simplified version of
+.. image:: images/OAuth_Implicit_Grant.png
+   :width: 800
+   :alt: Implicit Grant
+
+ImplicitGrant.png Implicit Grant is a simplified version of
   Authorization Code Grant. It is recommended to use Authorization Code
   Grant hen possible, but Implicit Grant is acceptable when necessary.
 
@@ -123,7 +135,11 @@ Implicit Grant
 Resource Owner Password Credentials Grant
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-| ResourceOwnerPasswordCredentialsGrant.png Resource Owner Password
+.. image:: images/OAuth_Resource_Owner_Password_Credentials_Grant.png
+   :width: 800
+   :alt: Resource Owner Password Credentials Grant
+
+ResourceOwnerPasswordCredentialsGrant.png Resource Owner Password
   Credentials Grant involves giving the Resource Owner credentials
   directly to the Client so that the Client can obtain a token. This
   Grant Type is generally not advised if one of the other options is

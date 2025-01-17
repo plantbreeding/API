@@ -11,9 +11,9 @@ across multiple systems, though it could be. DbIds should primarily be
 used to link data together within a system.
 
 For example, in a given call, an Observation Unit object is returned
-with the ``stduyDbId``. In a subsequent call to the same system, you
+with the ``studyDbId``. In a subsequent call to the same system, you
 should be able to retrieve the Study Object directly based on the
-``stduyDbId``.
+``studyDbId``.
 
 **DbIds Special Case**
 
@@ -49,8 +49,8 @@ is easy and fast, though the value of the ``DbId`` will lose meaning to any huma
 PUIs
 ----
 
-Several BrAPI entities have a ``xxxPUI`` field for a **P**\ ermanent
-**U**\ nique **I**\ dentifier. This is meant to be a global identifier
+Several BrAPI entities have a ``xxxPUI`` field for a Permanent
+Unique Identifier. This is meant to be a global identifier
 shared across different data sources. PUIs usually take the form of a
 URI, with a combination of identifying authority and unique identity
 value. For example, the `Digital Object Identifier (DOI) <https://www.doi.org/>`__ system is often used to assign PUIs.

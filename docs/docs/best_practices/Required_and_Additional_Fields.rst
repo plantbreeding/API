@@ -12,7 +12,7 @@ Additional data can be added to any response. Most response objects have an `add
 Deprecated Fields and Parameters
 --------------------------------
 Deprecated endpoints and fields should be included only if the given server wants to support backwards compatibility. 
-Deprecated fields can be removed from a response if there is no need to support an earilier version any more. See the section on Versioning for more information.
+Deprecated fields can be removed from a response if there is no need to support an earlier version any more. See the section on Versioning for more information.
 
 
 

@@ -16,7 +16,7 @@ following steps:
 Libraries
 ---------
 
-For several popular programing languages, there are BrAPI client code libraries available, with the functions described above 
+For several popular programming languages, there are BrAPI client code libraries available, with the functions described above 
 for every BrAPI call. The BrAPI community has built client libraries for R, JavaScript, Java, and Drupal (PHP). These libraries 
 are available at brapi.org/libraries. They are all open source, community run projects, so please consider contributing back to 
 them if you use it.

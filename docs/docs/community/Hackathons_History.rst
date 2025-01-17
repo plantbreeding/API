@@ -6,10 +6,10 @@ Oct 2021 Virtual Hackathon
 October 4, 2021 - October 8, 2021
 
 :Agenda:
-    `Hackathon Agenda Webpage <https://brapi.org/events/hackathon-oct-2021#agenda-section>`__
+    `Hackathon Agenda Webpage <https://brapi.org/events/hackathon?id=hackathon-oct-2021#agenda-section>`__
 :Topics:
-    | `Project List <https://brapi.org/events/hackathon-oct-2021#projects-section>`__  
-    | `Notes and Recordings <https://brapi.org/events/hackathon-mar-2021>`__ 
+    | `Project List <https://brapi.org/events/hackathon?id=hackathon-oct-2021#projects-section>`__  
+    | `Notes and Recordings <https://brapi.org/events/hackathon?id=hackathon-mar-2021>`__ 
 :Wrap-up:
     `Hackathon Debrief News Post (Nov 11, 2021) <https://brapi.org/news/nov-11-2021>`__ 
 
@@ -22,7 +22,7 @@ March 8, 2021 - March 19, 2021
     `Hackathon Agenda (Google Doc) <https://docs.google.com/spreadsheets/d/1z9whaJlzTMNuNpq5vVgSxwsmbJfCedPGj3jRfcIX0oE>`__
 :Topics:
     | `Project List (Google Doc) <https://docs.google.com/document/d/1z4EtlSPTkA8FsopVhHrXSIjTOiEkZDqLW_-RiYFCqVY>`__  
-    | `Notes and Recordings <https://brapi.org/events/hackathon-mar-2021>`__
+    | `Notes and Recordings <https://brapi.org/events/hackathon?id=hackathon-mar-2021>`__
 :Wrap-up:
     `Hackathon Debrief News Post (Apr 8, 2021) <https://brapi.org/news/apr-08-2021>`__ 
 
@@ -58,7 +58,7 @@ Sept 10, 2018 - Sept 14, 2018
 :Topics:
     `Project List (Google Doc) <https://docs.google.com/document/d/1TmqhC5xFHxYpEQXflXwX_y7H7kRLJaYMEaSPKjNf2G4/edit>`__
 :Wrap-up:
-    `Texcoco Hackathon News Post <https://brapi.org/news/sept-27-2018>`__
+    `Texcoco Hackathon News Post <https://brapi.org/news/sep-27-2018>`__
     
 
 Feb 2018 Versailles
@@ -70,7 +70,7 @@ Feb 5, 2018 - Feb 9, 2018
 :Topics:
     `Topics Google Doc <https://docs.google.com/document/d/11u0qMTgCBjlYfqed5w_CKZULiJAhC4xscIph1Qc3sEY/edit>`__
 :Wrap-up:
-    `Versailles Debrief News Post <https://brapi.org/news.php?id=feb-14-2018>`__
+    `Versailles Debrief News Post <https://brapi.org/news/feb-14-2018>`__
 
 Jun 2017 Seattle
 ----------------
@@ -221,7 +221,7 @@ Jun 2017 Seattle
 :Topics:
     
 - **BrAPI Validation Test Suite**   
-- **Interfacing with Hand helds**
+- **Interfacing with Hand held devices**
 
   - IRRI work on making their hand held API consistent with BrAPI
   - KSU Fieldbook
@@ -245,7 +245,7 @@ Jun 2017 Seattle
   
 - **Exchange between systems**
 
-  - Breeding System to Datawarehouse (CIMMYT wants to work with Germinate(JHI)
+  - Breeding System to Data warehouse (CIMMYT wants to work with Germinate(JHI)
   - Cassavabase and BMS: implement germplasm match use case (see Germplasm match use case sheet)
   - MusaBase and MGIS: consolidate germplasm match use case (similar to Germplasm match use case sheet)
   - `TERRA-REF/BETYdb <https://docs.google.com/document/d/1WGDvlqZ8KjdKN8FFbdUwIqfNSQhVN16KoqPxvBgKRsw/edit#>`__ and BMS
@@ -257,11 +257,11 @@ Jun 2017 Seattle
   
 - **MIAPPE**
 
-  - What extensions or modification of existing calls would be needed to make BrAPI able to pass MIAPPE datatsets?
+  - What extensions or modification of existing calls would be needed to make BrAPI able to pass MIAPPE datasets?
   
 - **BrAPI version 2: potential areas for extending BrAPI**
 
-  - Extenstion to Location Definition
+  - Extension to Location Definition
   - Geospatial data
   - Dataset resource
   - HATEOS or JSON-LD
@@ -272,7 +272,7 @@ Jun 2017 Seattle
   - The Bioinformatics and Biometrics module of the EiB has volunteered to try to secure funding for a BrAPI coordinator/developer
     
 
-Dec 2016 Montpilier
+Dec 2016 Montpelier
 -------------------
 :Agenda:
 
@@ -445,7 +445,7 @@ Jul 2016 Ithaca
   Friday
 
    - 9:00 Break-out De-brief
-   - 9:45 Presentation: MIAPE compliance
+   - 9:45 Presentation: MIAPPE compliance
    - 10:30 Coffee Break
    - 10:45 Break-out session
    - 12:30 Lunch
@@ -479,7 +479,7 @@ Jul 2016 Ithaca
    - Party bus!
    - Roadmap (Raul and Ernesto)
    - Demos (KDExplorer, Hidap, Flapjack & Germinate3 with new alleleMatrix call)
-   - Session mgmt
+   - Session management
    - Good breakout sessions
 
   Could have been better
@@ -538,7 +538,7 @@ Jul 2015 Seattle
 
   Specific suggestions for topics to cover:
 
-    - Set of standardised success/error messages for the API. - mixture of HTTP codes and API-specific codes for more information.
+    - Set of standardized success/error messages for the API. - mixture of HTTP codes and API-specific codes for more information.
     - Client side stuff (eg Flapjack) - download progress tracking - preferable to always have a getCount() call before getting data
     - Missing data/data separators - can we define a standard and/or agree on MarkerProfile headers for this?
     - How to handle back-end database failures - what to return if queries fail: empty results, error codes?
@@ -580,7 +580,7 @@ Jul 2015 Seattle
     
   Use Cases
 
-  Trial Search Usecase
+  Trial Search Use case
 
   Sample Data To Lab
   
@@ -618,7 +618,7 @@ Jul 2015 Seattle
     | Who will be responsible for this?
     | Where will it be located?
     | Use API management tools (note that you still have to devise a way to do a more granular level of determining the level of access for a user hence this is not enough on its own)?
-    |    apiaxle.com (FREE)
+    |    ApiAxle.com (FREE)
     |    https://www.akana.com/solutions/api-gateway (PAID)
     |    http://wso2.com/api-management/try-it/
 
@@ -640,10 +640,10 @@ Jul 2015 Seattle
 
     | exact match is case insensitive
     | wildcard could be both * or % and ? for 1 character. do we need to deal with STARTS WITH/ENDS WITH/CONTAINS/NOT ?
-    | regexp could be an addtional method. need for escape
+    | regexp could be an additional method. need for escape
     | json structure should include a metadata section for pagination and status
     | for the permanent identifier, eed at least to provide URI
-    | Germplasm details should be compliant with multicrop passport data to add for instance biological status, type of storage, taxonomy authority (http://www.bioversityinternational.org/e-library/publications/detail/faobioversity-multi-crop-passport-descriptors-v2-mcpd-v2/)
+    | Germplasm details should be compliant with multi-crop passport data to add for instance biological status, type of storage, taxonomy authority (http://www.bioversityinternational.org/e-library/publications/detail/faobioversity-multi-crop-passport-descriptors-v2-mcpd-v2/)
     | what about passport data for genebank material?
     | Implementation as a Drupal/Tripal module: http://tripal.info/extensions/modules/breeding-api
 

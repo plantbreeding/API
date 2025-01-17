@@ -17,6 +17,7 @@ Get a filtered list of `Plates`. Each `Plate` is a collection of `Samples` that 
 
 <table>
 <tr> <th> Field </th> <th> Type </th> <th> Description </th> </tr> 
+<tr><td><span style="font-weight:bold;">plateDbId</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>The ID which uniquely identifies a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">plateName</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>A human readable name for a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">additionalInfo</span></td><td>object</td><td>A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification.</td></tr>
 <tr><td><span style="font-weight:bold;">externalReferences</span></td><td>array[object]</td><td>An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI.</td></tr>
@@ -92,6 +93,7 @@ Get a filtered list of `Plates`. Each `Plate` is a collection of `Samples` that 
                     }
                 ],
                 "plateBarcode": "11223344",
+                "plateDbId": "a106467f",
                 "plateFormat": "PLATE_96",
                 "plateName": "Plate_123_XYZ",
                 "programDbId": "bd748e00",
@@ -149,6 +151,7 @@ Submit new Plate entities to the server
 
 <table>
 <tr> <th> Field </th> <th> Type </th> <th> Description </th> </tr> 
+<tr><td><span style="font-weight:bold;">plateDbId</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>The ID which uniquely identifies a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">plateName</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>A human readable name for a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">additionalInfo</span></td><td>object</td><td>A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification.</td></tr>
 <tr><td><span style="font-weight:bold;">externalReferences</span></td><td>array[object]</td><td>An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI.</td></tr>
@@ -235,6 +238,7 @@ Submit new Plate entities to the server
                     }
                 ],
                 "plateBarcode": "11223344",
+                "plateDbId": "a106467f",
                 "plateFormat": "PLATE_96",
                 "plateName": "Plate_123_XYZ",
                 "programDbId": "bd748e00",
@@ -280,6 +284,7 @@ Update the details of existing Plates
 
 <table>
 <tr> <th> Field </th> <th> Type </th> <th> Description </th> </tr> 
+<tr><td><span style="font-weight:bold;">plateDbId</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>The ID which uniquely identifies a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">plateName</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>A human readable name for a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">additionalInfo</span></td><td>object</td><td>A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification.</td></tr>
 <tr><td><span style="font-weight:bold;">externalReferences</span></td><td>array[object]</td><td>An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI.</td></tr>
@@ -368,6 +373,7 @@ Update the details of existing Plates
                     }
                 ],
                 "plateBarcode": "11223344",
+                "plateDbId": "a106467f",
                 "plateFormat": "PLATE_96",
                 "plateName": "Plate_123_XYZ",
                 "programDbId": "bd748e00",
@@ -413,6 +419,7 @@ Get the details of a specific `Plate`. Each `Plate` is a collection of `Samples`
 
 <table>
 <tr> <th> Field </th> <th> Type </th> <th> Description </th> </tr> 
+<tr><td><span style="font-weight:bold;">plateDbId</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>The ID which uniquely identifies a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">plateName</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>A human readable name for a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">additionalInfo</span></td><td>object</td><td>A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification.</td></tr>
 <tr><td><span style="font-weight:bold;">externalReferences</span></td><td>array[object]</td><td>An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI.</td></tr>
@@ -471,6 +478,7 @@ Get the details of a specific `Plate`. Each `Plate` is a collection of `Samples`
             }
         ],
         "plateBarcode": "11223344",
+        "plateDbId": "a106467f",
         "plateFormat": "PLATE_96",
         "plateName": "Plate_123_XYZ",
         "programDbId": "bd748e00",
@@ -544,6 +552,7 @@ Review the <a target="_blank" href="https://wiki.brapi.org/index.php/Search_Serv
 
 <table>
 <tr> <th> Field </th> <th> Type </th> <th> Description </th> </tr> 
+<tr><td><span style="font-weight:bold;">plateDbId</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>The ID which uniquely identifies a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">plateName</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>A human readable name for a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">additionalInfo</span></td><td>object</td><td>A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification.</td></tr>
 <tr><td><span style="font-weight:bold;">externalReferences</span></td><td>array[object]</td><td>An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI.</td></tr>
@@ -688,6 +697,7 @@ Review the <a target="_blank" href="https://wiki.brapi.org/index.php/Search_Serv
                     }
                 ],
                 "plateBarcode": "11223344",
+                "plateDbId": "a106467f",
                 "plateFormat": "PLATE_96",
                 "plateName": "Plate_123_XYZ",
                 "programDbId": "bd748e00",
@@ -760,6 +770,7 @@ Review the <a target="_blank" href="https://wiki.brapi.org/index.php/Search_Serv
 
 <table>
 <tr> <th> Field </th> <th> Type </th> <th> Description </th> </tr> 
+<tr><td><span style="font-weight:bold;">plateDbId</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>The ID which uniquely identifies a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">plateName</span></td><td>string<br><span style="font-size: smaller; color: red;">(Required)</span></td><td>A human readable name for a `Plate`</td></tr>
 <tr><td><span style="font-weight:bold;">additionalInfo</span></td><td>object</td><td>A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification.</td></tr>
 <tr><td><span style="font-weight:bold;">externalReferences</span></td><td>array[object]</td><td>An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI.</td></tr>
@@ -822,6 +833,7 @@ Review the <a target="_blank" href="https://wiki.brapi.org/index.php/Search_Serv
                     }
                 ],
                 "plateBarcode": "11223344",
+                "plateDbId": "a106467f",
                 "plateFormat": "PLATE_96",
                 "plateName": "Plate_123_XYZ",
                 "programDbId": "bd748e00",

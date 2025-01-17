@@ -14,9 +14,9 @@ components:
           module: BrAPI-Genotyping
           title: Plate
           description: A Plate represents the metadata for a collection of Samples. The physical Plate being represented might be a plastic tray full of Samples, or a group of Samples stored in individual containers ie bags, test tubes, etc. Whatever the container is, the Samples in a Plate should be related by the same physical space, though they may or may not be related as part of the same experiment or analysis. 
-      required:
-      - plateDbId
-      properties:
+        required:
+        - plateDbId
+        properties:
           plateDbId:
             description: The ID which uniquely identifies a `Plate`
             type: string
