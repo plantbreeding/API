@@ -133,7 +133,7 @@
             "title": "CrossAttribute",
             "type": "object",
             "brapi-metadata": {
-                "primaryModel": true
+                "primaryModel": false
             }
         },
         "PollinationEvent": {
