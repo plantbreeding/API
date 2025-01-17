@@ -22,3 +22,4 @@ jobs:
       - name: Generate OpenAPI, GraphQL and OWL
         working-directory: ./generator/
         run: ./gradlew generateAll
+      - uses: stefanzweifel/git-auto-commit-action@v5
