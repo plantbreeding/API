@@ -160,26 +160,15 @@
         },
         "ContentMixture": {
             "properties": {
-                "crossName": {
-                    "description": "The human readable name for a cross contained in this seed lot",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
+                "cross": {
+                    "$ref": "Cross.json#/$defs/Cross",
+                    "description": "The cross for the germplasm using in this content mixture",
+                    "relationshipType": "many-to-one"
                 },
-                "germplasmDbId": {
-                    "description": "The unique DbId of the Germplasm contained in this Seed Lot",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
-                },
-                "germplasmName": {
-                    "description": "The human readable name of the Germplasm contained in this Seed Lot",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
+                "germplasm": {
+                    "$ref": "Germplasm.json#/$defs/Germplasm",
+                    "description": "The germplasm using in this content mixture",
+                    "relationshipType": "many-to-one"
                 },
                 "mixturePercentage": {
                     "description": "The percentage of the given germplasm in the seed lot mixture.",

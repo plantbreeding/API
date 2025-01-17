@@ -130,7 +130,7 @@
                     "referencedAttribute": "crossAttributes"
                 }
             },
-            "title": "CrossAttributes",
+            "title": "CrossAttribute",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": true
@@ -161,13 +161,13 @@
                     ]
                 },
                 "cross": {
-                    "description": "polunation events associated with a cross",
+                    "description": "Pollination events associated with a cross",
                     "$ref": "../BrAPI-Germplasm/Cross.json#/$defs/Cross",
                     "relationshipType": "many-to-one",
                     "referencedAttribute": "pollinationEvents"
                 }
             },
-            "title": "PollinationEvents",
+            "title": "PollinationEvent",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

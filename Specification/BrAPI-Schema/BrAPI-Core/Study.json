@@ -100,12 +100,9 @@
                 },
                 "growthFacility": {
                     "description": "Short description of the facility in which the study was carried out.",
-                    "relationshipType": "one-to-many",
+                    "relationshipType": "many-to-one",
                     "referencedAttribute": "study",
-					"items": {
-						"$ref": "../BrAPI-Core/Study.json#/$defs/GrowthFacility",
-						"description": "GrowthFacility"
-					}
+					"$ref": "../BrAPI-Core/Study.json#/$defs/GrowthFacility"
                 },
                 "lastUpdate": {
                     "description": "The date and time when this study was last modified",
@@ -129,9 +126,8 @@
                 "observationLevels": {
                     "description": "Observation levels indicate the granularity level at which the measurements are taken. `levelName` \ndefines the level, `levelOrder` defines where that level exists in the hierarchy of levels. \n`levelOrder`s lower numbers are at the top of the hierarchy (ie field > 0) and higher numbers are \nat the bottom of the hierarchy (ie plant > 6). \n\n**Standard Level Names: study, field, entry, rep, block, sub-block, plot, sub-plot, plant, pot, sample** \n\nFor more information on Observation Levels, please review the <a target=\"_blank\" href=\"https://wiki.brapi.org/index.php/Observation_Levels\">Observation Levels documentation</a>. ",
                     "relationshipType": "one-to-many",
-                    "referencedAttribute": "study",
                     "items": {
-                        "$ref": "../BrAPI-Core/Study.json#/$defs/ObservationLevels",
+                        "$ref": "../BrAPI-Common/ObservationUnitHierarchyLevel.json#/$defs/ObservationUnitHierarchyLevel",
                         "description": "ObservationLevels"
                     },
                     "title": "ObservationLevels",
@@ -394,10 +390,6 @@
         },
         "ExperimentalDesign": {
             "properties": {
-                "experimentalDesignDbId": {
-                    "description": "The experimental and statistical design full description plus a category PUI taken from crop research ontology or agronomy ontology",
-                    "type": "string"
-                },
                 "PUI": {
                     "description": "MIAPPE V1.1 (DM-23) Type of experimental design - Type of experimental  design of the study, in the form of an accession number from the Crop Ontology.",
                     "type": [
@@ -419,9 +411,6 @@
                     "referencedAttribute": "experimentalDesign"
                 }
             },
-            "required": [
-                "experimentalDesignDbId"
-            ],
             "title": "ExperimentalDesign",
             "type": "object",
             "brapi-metadata": {
@@ -430,10 +419,6 @@
         },
         "GrowthFacility": {
             "properties": {
-                "growthFacilityDbId": {
-                    "description": "Short description of the facility in which the study was carried out.",
-                    "type": "string"
-                },
                 "PUI": {
                     "description": "MIAPPE V1.1 (DM-27) Type of growth facility - Type of growth facility in which the study was carried out, in the form of an accession number from the Crop Ontology.",
                     "type": [
@@ -455,9 +440,6 @@
                     "referencedAttribute": "growthFacility"
                 }
             },
-            "required": [
-                "growthFacilityDbId"
-            ],
             "title": "GrowthFacility",
             "type": "object",
             "brapi-metadata": {
@@ -494,42 +476,6 @@
                 "lastUpdateDbId"
             ],
             "title": "LastUpdate",
-            "type": "object",
-            "brapi-metadata": {
-                "primaryModel": false
-            }
-        },
-        "ObservationLevels": {
-            "properties": {
-                "observationLevelsDbId": {
-                    "description": "Observation levels indicate the granularity level at which the measurements are taken. `levelName` defines the level, `levelOrder` defines where that level exists in the hierarchy of levels. `levelOrder`s lower numbers are at the top of the hierarchy (ie field > 0) and higher numbers are at the bottom of the hierarchy (ie plant > 6). ",
-                    "type": "string"
-                },
-                "levelName": {
-                    "description": "A name for this level \n\n**Standard Level Names: study, field, entry, rep, block, sub-block, plot, sub-plot, plant, pot, sample** \n\nFor more information on Observation Levels, please review the <a target=\"_blank\" href=\"https://wiki.brapi.org/index.php/Observation_Levels\">Observation Levels documentation</a>. ",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
-                },
-                "levelOrder": {
-                    "description": "`levelOrder` defines where that level exists in the hierarchy of levels. `levelOrder`'s lower numbers \nare at the top of the hierarchy (ie field -> 1) and higher numbers are at the bottom of the hierarchy (ie plant -> 9). \n\nFor more information on Observation Levels, please review the <a target=\"_blank\" href=\"https://wiki.brapi.org/index.php/Observation_Levels\">Observation Levels documentation</a>. ",
-                    "type": [
-                        "null",
-                        "integer"
-                    ]
-                },
-                "study": {
-                    "description": "Observation levels associated with a study",
-                    "$ref": "../BrAPI-Core/Study.json#/$defs/Study",
-                    "relationshipType": "many-to-one",
-                    "referencedAttribute": "observationLevels"
-                }
-            },
-            "required": [
-                "observationLevelsDbId"
-            ],
-            "title": "ObservationUnitHierarchyLevel",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

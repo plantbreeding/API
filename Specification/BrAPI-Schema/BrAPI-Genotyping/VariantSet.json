@@ -63,11 +63,17 @@
                         "array"
                     ]
                 },
-                "availableFormat": {
+                "availableFormats": {
                     "description": "When the data for a VariantSet is retrieved, it can be retrieved in a variety of data formats and file formats. \n<br/>'dataFormat' defines the structure of the data within a file (ie DartSeq, VCF, Hapmap, tabular, etc)\n<br/>'fileFormat' defines the MIME type of the file (ie text/csv, application/excel, application/zip). This should also be reflected in the Accept and ContentType HTTP headers for every relevant request and response.",
-                    "relationshipType": "one-to-one",
-                    "referencedAttribute": "variantSet",
-					"$ref": "../BrAPI-Genotyping/VariantSet.json#/$defs/AvailableFormat"
+                    "relationshipType": "many-to-many",
+                    "items": {
+                        "$ref": "../BrAPI-Genotyping/VariantSet.json#/$defs/AvailableFormat"
+                    },
+                    "type": [
+                        "null",
+                        "array"
+                    ],
+                    "referencedAttribute": "variantSet"
                 },
                 "callSetCount": {
                     "description": "The number of CallSets included in this VariantSet",
@@ -89,11 +95,17 @@
                         "array"
                     ]
                 },
-                "metadataField": {
+                "metadataFields": {
                     "description": "The 'metadataField' indicates which types of genotyping data and metadata are available in the VariantSet. \n<br> When possible, these field names and abbreviations should follow the VCF standard ",
-                    "relationshipType": "one-to-one",
+                    "relationshipType": "one-to-many",
                     "referencedAttribute": "variantSet",
-					"$ref": "../BrAPI-Genotyping/VariantSet.json#/$defs/MetadataField"
+                    "items": {
+                        "$ref": "../BrAPI-Genotyping/VariantSet.json#/$defs/MetadataField"
+                    },
+                    "type": [
+                        "null",
+                        "array"
+                    ]
                 },
                 "referenceSet": {
                     "$ref": "ReferenceSet.json#/$defs/ReferenceSet",
@@ -296,7 +308,7 @@
                     "referencedAttribute": "availableFormats"
                 }
             },
-            "title": "AvailableFormats",
+            "title": "AvailableFormat",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false
@@ -304,13 +316,6 @@
         },
         "MetadataField": {
             "properties": {
-                "metadataFieldDbId": {
-                    "description": "This represents a type of genotyping data or metadata available in this VariantSet",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
-                },
                 "dataType": {
                     "description": "The type of field represented in this Genotype Field. This is intended to help parse the data out of JSON.",
                     "enum": [
@@ -346,10 +351,7 @@
                     "referencedAttribute": "metadataFields"
                 }
             },
-            "required": [
-                "metadataFieldDbId"
-            ],
-            "title": "MetadataFields",
+            "title": "MetadataField",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

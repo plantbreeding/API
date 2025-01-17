@@ -210,7 +210,7 @@
                 },
                 "observationLevelRelationships": {
                     "description": "Observation levels indicate the granularity level at which the measurements are taken. `levelName` \ndefines the level, `levelOrder` defines where that level exists in the hierarchy of levels. \n`levelOrder`s lower numbers are at the top of the hierarchy (ie field > 0) and higher numbers are \nat the bottom of the hierarchy (ie plant > 6). `levelCode` is an ID code for this level tag. Identify \nthis observation unit by each level of the hierarchy where it exists. \n\nFor more information on Observation Levels, please review the <a target=\"_blank\" href=\"https://wiki.brapi.org/index.php/Observation_Levels\">Observation Levels documentation</a>. \n\n**Standard Level Names: study, field, entry, rep, block, sub-block, plot, sub-plot, plant, pot, sample** ",
-                    "relationshipType": "one-to-one",
+                    "relationshipType": "one-to-many",
                     "items": {
                         "$ref": "../BrAPI-Phenotyping/ObservationUnitLevelRelationship.json#/$defs/ObservationUnitLevelRelationship"
                     },
@@ -284,10 +284,6 @@
         },
         "Treatment": {
             "properties": {
-                "treatmentDbId": {
-                    "description": "the unique identifier for a treatment",
-                    "type": "string"
-                },
                 "factor": {
                     "description": "The type of treatment/factor. ex. 'fertilizer', 'inoculation', 'irrigation', etc\n\nMIAPPE V1.1 (DM-61) Experimental Factor type - Name/Acronym of the experimental factor.",
                     "type": [
@@ -309,10 +305,7 @@
                     "referencedAttribute": "treatments"
                 }
             },
-            "required": [
-                "treatmentDbId"
-            ],
-            "title": "Treatments",
+            "title": "Treatment",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

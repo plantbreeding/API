@@ -60,7 +60,8 @@
                     "type": [
                         "null",
                         "string"
-                    ]
+                    ],
+                    "title": "PlannedCrossStatus"
                 },
                 "crosses": {
                     "title": "crosses",

@@ -189,7 +189,7 @@
                     "referencedAttribute": "eventParameters"
                 }
             },
-            "title": "EventParameters",
+            "title": "EventParameter",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

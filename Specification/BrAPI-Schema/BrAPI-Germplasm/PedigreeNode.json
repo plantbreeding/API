@@ -56,7 +56,6 @@
                 "germplasm": {
                     "$ref": "Germplasm.json#/$defs/Germplasm",
                     "description": "The ID which uniquely identifies a germplasm",
-                    "referencedAttribute": "pedigreeNode",
                     "relationshipType": "one-to-one"
                 },
                 "parents": {
@@ -126,13 +125,9 @@
         },
         "GermplasmParent": {
             "properties": {
-                "germplasmParentDbId": {
-                    "description": "a unique identifiere for a parent",
-                    "type": "string"
-                },
                 "parentGermplasm": {
                     "$ref": "Germplasm.json#/$defs/Germplasm",
-                    "description": "The ID which uniquely identifies a parent germplasm",
+                    "description": "The parent germplasm",
                     "referencedAttribute": "progenyPedigreeNodes",
                     "relationshipType": "many-to-one"
                 },
@@ -148,11 +143,10 @@
                 }
             },
             "required": [
-                "parentDbId",
                 "parentGermplasm",
                 "parentType"
             ],
-            "title": "Parents",
+            "title": "GermplasmParent",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false
@@ -160,13 +154,9 @@
         },
         "GermplasmChild": {
             "properties": {
-                "germplasmChildDbId": {
-                    "description": "a unique identifiere for a progeny",
-                    "type": "string"
-                },
-                "progenyGermplasm": {
+                "childGermplasm": {
                     "$ref": "Germplasm.json#/$defs/Germplasm",
-                    "description": "The ID which uniquely identifies a parent germplasm",
+                    "description": "The child germplasm",
                     "referencedAttribute": "parentPedigreeNodes",
                     "relationshipType": "many-to-one"
                 },
@@ -182,11 +172,10 @@
                 }
             },
             "required": [
-                "germplasmChildDbId",
-                "progenyGermplasm",
+                "childGermplasm",
                 "parentType"
             ],
-            "title": "Progeny",
+            "title": "GermplasmChild",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

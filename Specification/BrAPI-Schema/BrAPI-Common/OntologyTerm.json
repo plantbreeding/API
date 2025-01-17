@@ -1,14 +1,7 @@
 {
     "$defs": {
-        "Species": {
+        "OntologyTerm": {
             "properties": {
-                "speciesDbId": {
-                    "description": "An ontology term describing an attribute.",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
-                },
                 "term": {
                     "description": "Ontology term - the label of the ontology term the termId is pointing to.",
                     "type": [
@@ -36,9 +29,6 @@
                     "referencedAttribute": "species"
                 }
             },
-            "required": [
-                "specieDbId"
-            ],
             "title": "OntologyTerm",
             "type": "object",
             "brapi-metadata": {
@@ -46,6 +36,6 @@
             }
         }
     },
-    "$id": "https://brapi.org/Specification/BrAPI-Schema/BrAPI-Common/Species.json",
+    "$id": "https://brapi.org/Specification/BrAPI-Schema/BrAPI-Common/OntologyTerm.json",
     "$schema": "http://json-schema.org/draft/2020-12/schema"
 }

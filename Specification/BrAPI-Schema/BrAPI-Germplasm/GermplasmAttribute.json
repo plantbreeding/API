@@ -8,13 +8,6 @@
                 {
                     "type": "object",
                     "properties": {
-						"germplasmAttributeDbId": {
-							"description": "The ID which uniquely identifies a germplasm attribute",
-							"type": [
-								"null",
-								"string"
-							]
-						},
                         "attributeValues": {
                             "title": "attributeValues",
                             "description": "attributeValues",
