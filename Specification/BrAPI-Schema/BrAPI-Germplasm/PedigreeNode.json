@@ -56,7 +56,6 @@
                 "germplasm": {
                     "$ref": "Germplasm.json#/$defs/Germplasm",
                     "description": "The ID which uniquely identifies a germplasm",
-                    "referencedAttribute": "pedigreeNode",
                     "relationshipType": "one-to-one"
                 },
                 "parents": {
