@@ -73,7 +73,7 @@
                     "referencedAttribute": "documentationLinks"
                 }
             },
-            "title": "DocumentationLinks",
+            "title": "DocumentationLink",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

@@ -16,6 +16,10 @@ jobs:
       - name: Change wrapper permissions
         working-directory: ./generator/
         run: chmod +x ./gradlew
-      - name: Build with Gradle Wrapper
+      - name: Validate
         working-directory: ./generator/
         run: ./gradlew validate
+      - name: Generate OpenAPI, GraphQL and OWL
+        working-directory: ./generator/
+        run: ./gradlew generateAll
+      - uses: stefanzweifel/git-auto-commit-action@v5

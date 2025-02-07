@@ -67,10 +67,6 @@
         },
         "GenotypeMetadata": {
             "properties": {
-                "genotypeMetadataDbId": {
-                    "description": "MIAPPE V1.1 (DM-9) Associated publication - An identifier for a literature publication where the investigation is described. Use of DOIs is recommended.",
-                    "type": "string"
-                },
                 "dataType": {
                     "description": "The type of field represented in this Genotype Field. This is intended to help parse the data out of JSON.",
                     "enum": [
@@ -113,9 +109,6 @@
                     "referencedAttribute": "genotypeMetadata"
                 }
             },
-            "required": [
-                "genotypeMetadataDbId"
-            ],
             "title": "GenotypeMetadata",
             "type": "object",
             "brapi-metadata": {

@@ -2,13 +2,6 @@
     "$defs": {
         "Variable": {
             "properties": {
-				"variableDbId": {
-                    "description": "Unique identifier for the Variable",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
-                },
                 "additionalInfo": {
                     "description": "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification.",
                     "$ref": "../BrAPI-Common/AdditionalInfo.json#/$defs/AdditionalInfo",

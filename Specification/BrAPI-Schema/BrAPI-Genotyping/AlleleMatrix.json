@@ -16,7 +16,7 @@
                     "relationshipType": "one-to-many",
                     "referencedAttribute": "alleleMatrix",
                     "items": {
-                        "$ref": "../BrAPI-Genotyping/AlleleMatrix.json#/$defs/DataMatrices",
+                        "$ref": "../BrAPI-Genotyping/AlleleMatrix.json#/$defs/DataMatrix",
                         "description": "DataMatrices"
                     },
                     "title": "DataMatrices",
@@ -96,12 +96,8 @@
                 "primaryModel": true
             }
         },
-        "DataMatrices": {
+        "DataMatrix": {
             "properties": {
-                "dataMatricesDbId": {
-                    "description": "This is a single data matrix. It could be the allele matrix or an additional layer of metadata associated with each genotype value.",
-                    "type": "string"
-                },
                 "dataMatrix": {
                     "description": "The two dimensional array of data, providing the allele matrix or an additional layer of metadata associated with each genotype value. Each matrix should be the same size and orientation, aligned with the \"callSetDbIds\" as columns and the \"variantDbIds\" as rows.",
                     "items": {
@@ -152,9 +148,6 @@
                     "referencedAttribute": "dataMatrices"
                 }
             },
-            "required": [
-                "dataMatricesDbId"
-            ],
             "title": "DataMatrix",
             "type": "object",
             "brapi-metadata": {
@@ -163,10 +156,6 @@
         },
         "Pagination": {
             "properties": {
-                "paginationDbId": {
-                    "description": "Pagination for the matrix",
-                    "type": "string"
-                },
                 "dimension": {
                     "description": "The dimension of the matrix being paginated",
                     "enum": [
@@ -208,15 +197,12 @@
                     ]
                 },
                 "alleleMatrix": {
-                    "description": "Pgination associated with an alleleMatrix",
+                    "description": "Pagination associated with an alleleMatrix",
                     "$ref": "../BrAPI-Genotyping/AlleleMatrix.json#/$defs/AlleleMatrix",
                     "relationshipType": "many-to-one",
                     "referencedAttribute": "pagination"
                 }
             },
-            "required": [
-                "paginationDbId"
-            ],
             "title": "Pagination",
             "type": "object",
             "brapi-metadata": {

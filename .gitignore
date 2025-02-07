@@ -12,3 +12,5 @@ brapi_openapi.yaml
 out.yaml
 Scripts/__pycache__/
 brapi_blueprint.apib.json
+/generator/.gradle/
+/generator/build

@@ -99,7 +99,7 @@
                     "relationshipType": "one-to-many",
                     "referencedAttribute": "trial",
                     "items": {
-                        "$ref": "../BrAPI-Core/Trial.json#/$defs/Publications",
+                        "$ref": "../BrAPI-Core/Trial.json#/$defs/Publication",
                         "description": "Publications"
                     },
                     "title": "Publications",
@@ -192,10 +192,6 @@
         },
         "DatasetAuthorships": {
             "properties": {
-                "datasetAuthorshipsDbId": {
-                    "description": "License and citation information for the data in this trial",
-                    "type": "string"
-                },
                 "datasetPUI": {
                     "description": "The DOI or other permanent unique identifier for this published dataset",
                     "type": [
@@ -231,21 +227,14 @@
                     "referencedAttribute": "datasetAuthorships"
                 }
             },
-            "required": [
-                "datasetAuthorshipsDbId"
-            ],
             "title": "DatasetAuthorships",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false
             }
         },
-        "Publications": {
+        "Publication": {
             "properties": {
-                "publicationsDbId": {
-                    "description": "MIAPPE V1.1 (DM-9) Associated publication - An identifier for a literature publication where the investigation is described. Use of DOIs is recommended.",
-                    "type": "string"
-                },
                 "publicationPUI": {
                     "type": [
                         "null",
@@ -265,10 +254,7 @@
                     "referencedAttribute": "publications"
                 }
             },
-            "required": [
-                "publicationsDbId"
-            ],
-            "title": "Publications",
+            "title": "Publication",
             "type": "object",
             "brapi-metadata": {
                 "primaryModel": false

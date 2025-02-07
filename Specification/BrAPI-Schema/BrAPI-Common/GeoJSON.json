@@ -5,13 +5,6 @@
             "type": "object",
             "description": "One geometry as defined by GeoJSON (RFC 7946). All coordinates are decimal values on the WGS84 geographic coordinate reference system.\n\nCopied from RFC 7946 Section 3.1.1\n\nA position is an array of numbers. There MUST be two or more elements. The first two elements are longitude and latitude, or\neasting and northing, precisely in that order and using decimal numbers. Altitude or elevation MAY be included as an optional third element.",
             "properties": {
-                "geoJSONDbId": {
-                    "description": "Unique identifier for the geometry",
-                    "type": [
-                        "null",
-                        "string"
-                    ]
-                },
                 "geometry": {
                     "description": "A geometry as defined by GeoJSON (RFC 7946). In this context, only Point or Polygon geometry are allowed.",
                     "$ref": "GeoJSONGeometry.json#/$defs/GeoJSONGeometry"
@@ -46,10 +39,7 @@
                     "relationshipType": "many-to-one",
                     "referencedAttribute": "coordinates"
                 }
-            },
-            "required": [
-                "geoJSONDbId"
-            ]
+            }
         }
     },
     "$id": "https://brapi.org/Specification/BrAPI-Schema/BrAPI-Common/GeoJSON.json",
