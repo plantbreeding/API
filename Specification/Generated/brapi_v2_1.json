@@ -20742,18 +20742,17 @@
         },
         "example" : 1000
       },
-      "authorizationHeader" : {
-        "name" : "Authorization",
-        "in" : "header",
-        "description" : "HTTP HEADER - Token used for Authorization \n\n<strong> Bearer {token_string} </strong>",
+      "page" : {
+        "name" : "page",
+        "in" : "query",
+        "description" : "Used to request a specific page of data to be returned.\n\nThe page indexing starts at 0 (the first page is 'page'= 0). Default is `0`.",
         "required" : false,
-        "style" : "simple",
-        "explode" : false,
+        "style" : "form",
+        "explode" : true,
         "schema" : {
-          "type" : "string",
-          "pattern" : "^Bearer .*$"
+          "type" : "integer"
         },
-        "example" : "Bearer XXXX"
+        "example" : "0"
       },
       "pageToken" : {
         "name" : "pageToken",
@@ -20768,17 +20767,18 @@
         },
         "example" : "33c27874"
       },
-      "page" : {
-        "name" : "page",
-        "in" : "query",
-        "description" : "Used to request a specific page of data to be returned.\n\nThe page indexing starts at 0 (the first page is 'page'= 0). Default is `0`.",
+      "authorizationHeader" : {
+        "name" : "Authorization",
+        "in" : "header",
+        "description" : "HTTP HEADER - Token used for Authorization \n\n<strong> Bearer {token_string} </strong>",
         "required" : false,
-        "style" : "form",
-        "explode" : true,
+        "style" : "simple",
+        "explode" : false,
         "schema" : {
-          "type" : "integer"
+          "type" : "string",
+          "pattern" : "^Bearer .*$"
         },
-        "example" : "0"
+        "example" : "Bearer XXXX"
       }
     },
     "securitySchemes" : {
