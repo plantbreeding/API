@@ -319,12 +319,12 @@ type CallSetListResponse {
 
 type CallSetsSearchResponse {
   data: [CallSet]
-  searchResultsDbId: [CallSet]
+  searchResultsDbId: String
 }
 
 type CallsSearchResponse {
   data: [Call]
-  searchResultsDbId: [Call]
+  searchResultsDbId: String
 }
 
 type Contact {
@@ -454,7 +454,7 @@ type CrossingProjectListResponse {
 
 type CrossingProjectsSearchResponse {
   data: [CrossingProject]
-  searchResultsDbId: [CrossingProject]
+  searchResultsDbId: String
 }
 
 type DataLink {
@@ -674,7 +674,7 @@ type EventParameter {
 
 type EventsSearchResponse {
   data: [Event]
-  searchResultsDbId: [Event]
+  searchResultsDbId: String
 }
 
 type ExperimentalDesign {
@@ -731,7 +731,7 @@ type GenomeMapListResponse {
 
 type GenomeMapsSearchResponse {
   data: [GenomeMap]
-  searchResultsDbId: [GenomeMap]
+  searchResultsDbId: String
 }
 
 type GenotypeMetadata {
@@ -1060,12 +1060,12 @@ type GermplasmAttributeValueListResponse {
 
 type GermplasmAttributeValuesSearchResponse {
   data: [GermplasmAttributeValue]
-  searchResultsDbId: [GermplasmAttributeValue]
+  searchResultsDbId: String
 }
 
 type GermplasmAttributesSearchResponse {
   data: [GermplasmAttribute]
-  searchResultsDbId: [GermplasmAttribute]
+  searchResultsDbId: String
 }
 
 type GermplasmChild {
@@ -1127,7 +1127,7 @@ type GermplasmParent {
 
 type GermplasmSearchResponse {
   data: [Germplasm]
-  searchResultsDbId: [Germplasm]
+  searchResultsDbId: String
 }
 
 type GrowthFacility {
@@ -1190,7 +1190,7 @@ type ImageListResponse {
 
 type ImagesSearchResponse {
   data: [Image]
-  searchResultsDbId: [Image]
+  searchResultsDbId: String
 }
 
 type LastUpdate {
@@ -1238,7 +1238,7 @@ type ListListResponse {
 
 type ListsSearchResponse {
   data: [List]
-  searchResultsDbId: [List]
+  searchResultsDbId: String
 }
 
 type Location {
@@ -1318,7 +1318,7 @@ type LocationListResponse {
 
 type LocationsSearchResponse {
   data: [Location]
-  searchResultsDbId: [Location]
+  searchResultsDbId: String
 }
 
 type MarkerPosition {
@@ -1347,7 +1347,7 @@ type MarkerPositionListResponse {
 
 type MarkerPositionsSearchResponse {
   data: [MarkerPosition]
-  searchResultsDbId: [MarkerPosition]
+  searchResultsDbId: String
 }
 
 type MetadataField {
@@ -1767,7 +1767,7 @@ type ObservationUnitPosition {
 
 type ObservationUnitsSearchResponse {
   data: [ObservationUnit]
-  searchResultsDbId: [ObservationUnit]
+  searchResultsDbId: String
 }
 
 type ObservationVariable implements Variable {
@@ -1847,12 +1847,12 @@ type ObservationVariableListResponse {
 
 type ObservationVariablesSearchResponse {
   data: [ObservationVariable]
-  searchResultsDbId: [ObservationVariable]
+  searchResultsDbId: String
 }
 
 type ObservationsSearchResponse {
   data: [Observation]
-  searchResultsDbId: [Observation]
+  searchResultsDbId: String
 }
 
 type Ontology {
@@ -1973,12 +1973,12 @@ type PedigreeNodeListResponse {
 
 type PedigreeNodesSearchResponse {
   data: [PedigreeNode]
-  searchResultsDbId: [PedigreeNode]
+  searchResultsDbId: String
 }
 
 type PeopleSearchResponse {
   data: [Person]
-  searchResultsDbId: [Person]
+  searchResultsDbId: String
 }
 
 type Person {
@@ -2039,7 +2039,7 @@ type PlannedCrossListResponse {
 
 type PlannedCrossesSearchResponse {
   data: [PlannedCross]
-  searchResultsDbId: [PlannedCross]
+  searchResultsDbId: String
 }
 
 type Plate {
@@ -2072,7 +2072,7 @@ type PlateListResponse {
 
 type PlatesSearchResponse {
   data: [Plate]
-  searchResultsDbId: [Plate]
+  searchResultsDbId: String
 }
 
 type PollinationEvent {
@@ -2122,7 +2122,7 @@ type ProgramListResponse {
 
 type ProgramsSearchResponse {
   data: [Program]
-  searchResultsDbId: [Program]
+  searchResultsDbId: String
 }
 
 type Publication {
@@ -2408,12 +2408,12 @@ type ReferenceSetListResponse {
 
 type ReferenceSetsSearchResponse {
   data: [ReferenceSet]
-  searchResultsDbId: [ReferenceSet]
+  searchResultsDbId: String
 }
 
 type ReferencesSearchResponse {
   data: [Reference]
-  searchResultsDbId: [Reference]
+  searchResultsDbId: String
 }
 
 type Sample {
@@ -2484,7 +2484,7 @@ type SampleListResponse {
 
 type SamplesSearchResponse {
   data: [Sample]
-  searchResultsDbId: [Sample]
+  searchResultsDbId: String
 }
 
 type Scale {
@@ -2556,7 +2556,7 @@ type SeasonListResponse {
 
 type SeasonsSearchResponse {
   data: [Season]
-  searchResultsDbId: [Season]
+  searchResultsDbId: String
 }
 
 type SeedLot {
@@ -2632,7 +2632,7 @@ type SeedLotTransaction {
 
 type SeedLotsSearchResponse {
   data: [SeedLot]
-  searchResultsDbId: [SeedLot]
+  searchResultsDbId: String
 }
 
 type StorageType {
@@ -2660,7 +2660,7 @@ type StorageType {
 
 type StudiesSearchResponse {
   data: [Study]
-  searchResultsDbId: [Study]
+  searchResultsDbId: String
 }
 
 type Study {
@@ -2912,7 +2912,7 @@ type TrialListResponse {
 
 type TrialsSearchResponse {
   data: [Trial]
-  searchResultsDbId: [Trial]
+  searchResultsDbId: String
 }
 
 type ValidValues {
@@ -3051,12 +3051,12 @@ type VariantSetListResponse {
 
 type VariantSetsSearchResponse {
   data: [VariantSet]
-  searchResultsDbId: [VariantSet]
+  searchResultsDbId: String
 }
 
 type VariantsSearchResponse {
   data: [Variant]
-  searchResultsDbId: [Variant]
+  searchResultsDbId: String
 }
 
 """
