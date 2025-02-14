@@ -1,7 +1,7 @@
 apply plugin : "java"
 ext {
   javaMainClass = 'org.brapi.schematools.cli.BrAPICommand'
-  brapiSchemaToolsVersion = '0.19.0-SNAPSHOT'
+  brapiSchemaToolsVersion = '0.20.0-SNAPSHOT'
   brapiVersion = 'v2_1'
 }
 
