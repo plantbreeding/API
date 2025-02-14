@@ -183,7 +183,7 @@ type AdditionalInfo {
 
 type AlleleMatrix {
   "A list of unique identifiers for the CallSets contained in the matrix response. This array should match the ordering for columns in the matrix. A CallSet is a unique combination of a Sample and a sequencing event. CallSets often have a 1-to-1 relationship with Samples, but this is not always the case."
-  callSets: [CallSet]
+  callSets(callSetsInput: CallSetsInput, paging: PageInput): CallSetListResponse
   "The 'dataMatrices' are an array of matrix objects that hold the allele data and associated metadata. Each matrix should be the same size and orientation, aligned with the \"callSetDbIds\" as columns and the \"variantDbIds\" as rows."
   dataMatrices: [DataMatrix]
   "Should homozygotes be expanded (true) or collapsed into a single occurrence (false)"
@@ -197,9 +197,14 @@ type AlleleMatrix {
   "The string used as a representation for missing data."
   unknownString: String
   "A list of unique identifiers for the VariantSets contained in the matrix response. A VariantSet is a data set originating from a sequencing event. Often, users will only be interested in data from a single VariantSet, but in some cases a user might be interested in a matrix with data from multiple VariantSets."
-  variantSets: [VariantSet]
+  variantSets(paging: PageInput, variantSetsInput: VariantSetsInput): VariantSetListResponse
   "A list of unique identifiers for the Variants contained in the matrix response. This array should match the ordering for rows in the matrix."
-  variants: [Variant]
+  variants(paging: PageInput, variantsInput: VariantsInput): VariantListResponse
+}
+
+type AlleleMatrixListResponse {
+  data: [AlleleMatrix]
+  page: PageInfo
 }
 
 type Analysis {
@@ -249,13 +254,9 @@ type BreedingMethod {
   breedingMethodName: String
   "human readable description of the breeding method"
   description: String
-  "germplasm"
-  germplasm: [Germplasm]
-  "pedigreeNodes"
-  pedigreeNodes: [PedigreeNode]
 }
 
-type BreedingMethodsListResponse {
+type BreedingMethodListResponse {
   data: [BreedingMethod]
 }
 
@@ -283,15 +284,20 @@ type Call {
   variantSet: VariantSet
 }
 
+type CallListResponse {
+  data: [Call]
+  page: PageInfo
+}
+
 type CallSet {
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
-  alleleMatrices: [AlleleMatrix]
+  alleleMatrices(alleleMatrixInput: AlleleMatrixInput, paging: PageInput): AlleleMatrixListResponse
   "The ID which uniquely identifies a CallSet within the given database server"
   callSetDbId: String
   "The human readable name which identifies a germplasm within the given database server"
   callSetName: String
-  calls: [Call]
+  calls(callsInput: CallsInput, paging: PageInput): CallListResponse
   "The date this call set was created"
   created: String
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
@@ -303,22 +309,17 @@ type CallSet {
   "The time at which this call set was last updated"
   updated: String
   "The IDs of the variantSets this callSet has calls in."
-  variantSets: [VariantSet]
+  variantSets(paging: PageInput, variantSetsInput: VariantSetsInput): VariantSetListResponse
 }
 
-type CallSetsListResponse {
+type CallSetListResponse {
   data: [CallSet]
-  page: [CallSet]
+  page: PageInfo
 }
 
 type CallSetsSearchResponse {
   data: [CallSet]
   searchResultsDbId: [CallSet]
-}
-
-type CallsListResponse {
-  data: [Call]
-  page: [Call]
 }
 
 type CallsSearchResponse {
@@ -391,8 +392,6 @@ type Cross {
   crossingProject: CrossingProject
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
   externalReferences: [ExternalReference]
-  "observationUnits"
-  observationUnits: [ObservationUnit]
   "the first parent used in the cross"
   parent1: CrossParent
   "the second parent used in the cross"
@@ -412,6 +411,11 @@ type CrossAttribute {
   crossAttributeValue: String
 }
 
+type CrossListResponse {
+  data: [Cross]
+  page: PageInfo
+}
+
 type CrossParent {
   "the germplasm of the cross parent"
   germplasm: Germplasm
@@ -421,18 +425,11 @@ type CrossParent {
   parentType: ParentType
 }
 
-type CrossesListResponse {
-  data: [Cross]
-  page: [Cross]
-}
-
 type CrossingProject {
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
   "the common name of a crop (for multi-crop systems)"
   commonCropName: String
-  "crosses"
-  crosses: [Cross]
   "The unique identifier for a crossing project"
   crossingProjectDbId: String
   "the description for a crossing project"
@@ -441,10 +438,6 @@ type CrossingProject {
   crossingProjectName: String
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
   externalReferences: [ExternalReference]
-  "pedigreeNodes"
-  pedigreeNodes: [PedigreeNode]
-  "plannedCrosses"
-  plannedCrosses: [PlannedCross]
   """
   A list of all the potential parents in the crossing block, available in the crossing project
   <br/> If the parameter 'includePotentialParents' is false, the array 'potentialParents' should be empty, null, or excluded from the response object.
@@ -454,9 +447,9 @@ type CrossingProject {
   program: Program
 }
 
-type CrossingProjectsListResponse {
+type CrossingProjectListResponse {
   data: [CrossingProject]
-  page: [CrossingProject]
+  page: PageInfo
 }
 
 type CrossingProjectsSearchResponse {
@@ -618,7 +611,7 @@ type Event {
   """
   eventTypeDbId: String
   "A list of the affected observation units. If this parameter is not given, it is understood that the event affected all units in the study"
-  observationUnits: [ObservationUnit]
+  observationUnits(observationUnitsInput: ObservationUnitsInput, paging: PageInput): ObservationUnitListResponse
   "The study in which the event occurred"
   study: Study
 }
@@ -641,6 +634,11 @@ type EventDateRange {
   <br/>MIAPPE V1.1 (DM-68) Event date - Date and time of the event.
   """
   startDate: String
+}
+
+type EventListResponse {
+  data: [Event]
+  page: PageInfo
 }
 
 type EventParameter {
@@ -672,11 +670,6 @@ type EventParameter {
   valueDescription: String
   "An array of values corresponding to each timestamp in the 'discreteDates' array of this event. The 'valuesByDate' array should exactly match the size of the 'discreteDates' array. If 'valuesByDate' is populated then 'value' should NOT be populated."
   valuesByDate: [String]
-}
-
-type EventsListResponse {
-  data: [Event]
-  page: [Event]
 }
 
 type EventsSearchResponse {
@@ -731,9 +724,9 @@ type GenomeMap {
   unit: String
 }
 
-type GenomeMapsListResponse {
+type GenomeMapListResponse {
   data: [GenomeMap]
-  page: [GenomeMap]
+  page: PageInfo
 }
 
 type GenomeMapsSearchResponse {
@@ -771,14 +764,6 @@ easting and northing, precisely in that order and using decimal numbers. Altitud
 type GeoJSON {
   "A geometry as defined by GeoJSON (RFC 7946). In this context, only Point or Polygon geometry are allowed."
   geometry: GeoJSONGeometry
-  "Geometry associated with an image"
-  germplasmOrigin: GermplasmOrigin
-  "Geometry associated with an image"
-  image: Image
-  "Geometry associated with an image"
-  observation: Observation
-  "Geometry associated with an image"
-  observationUnit: ObservationUnitPosition
   "The literal string \"Feature\""
   type: String
 }
@@ -824,8 +809,6 @@ type Germplasm {
   acquisitionDate: String
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
-  "attributeValues"
-  attributeValues: [GermplasmAttributeValue]
   """
   MCPD (v2.1) (SAMPSTAT) 19. The coding scheme proposed can be used at 3 different levels of detail: either by using the general codes such as 100, 200, 300, 400, or by using the more specific codes such as 110, 120, etc. 
   
@@ -919,26 +902,12 @@ type Germplasm {
   instituteCode: String
   "The name of the institute that maintains the material"
   instituteName: String
-  "observationUnits"
-  observationUnits: [ObservationUnit]
-  "observations"
-  observations: [Observation]
-  "parentPedigreeNodes"
-  parentPedigreeNodes: [PedigreeNode]
   """
   The cross name and optional selection history.
   
   MCPD (v2.1) (ANCEST) 20. Information about either pedigree or other description of ancestral information (e.g. parent variety in case of mutant or selection). For example a pedigree 'Hanna/7*Atlas//Turk/8*Atlas' or a description 'mutation found in Hanna', 'selection from Irene' or 'cross involving amongst others Hanna and Irene'.
   """
   pedigree: String
-  "progenyPedigreeNodes"
-  progenyPedigreeNodes: [PedigreeNode]
-  "Germplasm associated with a reference"
-  reference: Reference
-  "Germplasm associated with a reference"
-  referenceSet: ReferenceSet
-  "samples"
-  samples: [Sample]
   """
   An identifier for the source of the biological material
   <br/>MIAPPE V1.1 (DM-50) Material source ID (Holding institute/stock centre, accession) - An identifier for the source of the biological material, in the form of a key-value pair comprising the name/identifier of the repository from which the material was sourced plus the accession number of the repository for that material. Where an accession number has not been assigned, but the material has been derived from the crossing of known accessions, the material can be defined as follows: "mother_accession X father_accession", or, if father is unknown, as "mother_accession X UNKNOWN". For in situ material, the region of provenance may be used when an accession is not available.
@@ -950,8 +919,6 @@ type Germplasm {
   MIAPPE V1.1 (DM-56) Material source description - Description of the material source
   """
   seedSourceDescription: String
-  "siblingPedigreeNodes"
-  siblingPedigreeNodes: [PedigreeNode]
   """
   Specific epithet portion of the scientific name in lowercase letters.
   
@@ -1064,6 +1031,11 @@ type GermplasmAttribute {
   trait: Trait
 }
 
+type GermplasmAttributeListResponse {
+  data: [GermplasmAttribute]
+  page: PageInfo
+}
+
 type GermplasmAttributeValue {
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
@@ -1081,19 +1053,14 @@ type GermplasmAttributeValue {
   value: String
 }
 
-type GermplasmAttributeValuesListResponse {
+type GermplasmAttributeValueListResponse {
   data: [GermplasmAttributeValue]
-  page: [GermplasmAttributeValue]
+  page: PageInfo
 }
 
 type GermplasmAttributeValuesSearchResponse {
   data: [GermplasmAttributeValue]
   searchResultsDbId: [GermplasmAttributeValue]
-}
-
-type GermplasmAttributesListResponse {
-  data: [GermplasmAttribute]
-  page: [GermplasmAttribute]
 }
 
 type GermplasmAttributesSearchResponse {
@@ -1117,6 +1084,11 @@ type GermplasmChild {
   parentType: ParentType
   "associated pedigreeNode"
   pedigreeNode: PedigreeNode
+}
+
+type GermplasmListResponse {
+  data: [Germplasm]
+  page: PageInfo
 }
 
 type GermplasmOrigin {
@@ -1153,12 +1125,7 @@ type GermplasmParent {
   pedigreeNode: PedigreeNode
 }
 
-type GermplasmsListResponse {
-  data: [Germplasm]
-  page: [Germplasm]
-}
-
-type GermplasmsSearchResponse {
+type GermplasmSearchResponse {
   data: [Germplasm]
   searchResultsDbId: [Germplasm]
 }
@@ -1213,12 +1180,12 @@ type Image {
   "The related observation unit identifier, if relevant."
   observationUnit: ObservationUnit
   "A list of observation Ids this image is associated with, if applicable."
-  observations: [Observation]
+  observations(observationsInput: ObservationsInput, paging: PageInput): ObservationListResponse
 }
 
-type ImagesListResponse {
+type ImageListResponse {
   data: [Image]
-  page: [Image]
+  page: PageInfo
 }
 
 type ImagesSearchResponse {
@@ -1264,9 +1231,9 @@ type List {
   listType: ListType
 }
 
-type ListsListResponse {
+type ListListResponse {
   data: [List]
-  page: [List]
+  page: PageInfo
 }
 
 type ListsSearchResponse {
@@ -1330,28 +1297,23 @@ type Location {
   locationName: String
   "A short description of a type of Location (ex. Field Station, Breeding Location, Storage Location, etc)"
   locationType: String
-  "observationUnits"
-  observationUnits: [ObservationUnit]
   """
   The unique identifier for a Location
   <br/> The Parent Location defines the encompassing Location that a smaller Location belongs to. 
   For example, an Institution might have multiple Field Stations inside it and each Field Station might have multiple Fields.
   """
   parentLocation: Location
-  "seedLots"
-  seedLots: [SeedLot]
   "Description of the accessibility of the location (ex. Public, Private)"
   siteStatus: String
   "Describes the approximate slope (height/distance) of a Location."
   slope: String
-  studies: [Study]
   "Describes the topography of the land at a Location. (ex. Plateau, Cirque, Hill, Valley, etc)"
   topography: String
 }
 
-type LocationsListResponse {
+type LocationListResponse {
   data: [Location]
-  page: [Location]
+  page: PageInfo
 }
 
 type LocationsSearchResponse {
@@ -1378,9 +1340,9 @@ type MarkerPosition {
   variant: Variant
 }
 
-type MarkerPositionsListResponse {
+type MarkerPositionListResponse {
   data: [MarkerPosition]
-  page: [MarkerPosition]
+  page: PageInfo
 }
 
 type MarkerPositionsSearchResponse {
@@ -1441,9 +1403,9 @@ type Method {
   ontologyReference: OntologyReference
 }
 
-type MethodsListResponse {
+type MethodListResponse {
   data: [Method]
-  page: [Method]
+  page: PageInfo
 }
 
 type Mutation {
@@ -1571,8 +1533,6 @@ type Observation {
   geoCoordinates: GeoJSON
   "The ID which uniquely identifies a germplasm"
   germplasm: Germplasm
-  "images"
-  images: [Image]
   "The ID which uniquely identifies an observation"
   observationDbId: String
   "The date and time when this observation was made"
@@ -1590,19 +1550,20 @@ type Observation {
   value: String
 }
 
+type ObservationListResponse {
+  data: [Observation]
+  page: PageInfo
+}
+
 type ObservationUnit {
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
   "the unique identifier for a cross"
   cross: Cross
-  "events"
-  events: [Event]
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
   externalReferences: [ExternalReference]
   "The ID which uniquely identifies a germplasm"
   germplasm: Germplasm
-  "images"
-  images: [Image]
   "The ID which uniquely identifies a location, associated with this study"
   location: Location
   """
@@ -1627,12 +1588,8 @@ type ObservationUnit {
   Levels of observation must be consistent with those listed in the Study section.
   """
   observationUnitPosition: [ObservationUnitPosition]
-  "observations"
-  observations: [Observation]
   "The ID which uniquely identifies a program"
   program: Program
-  "samples"
-  samples: [Sample]
   "The unique identifier for the originating Seed Lot"
   seedLot: SeedLot
   "The ID which uniquely identifies a study within the given database server"
@@ -1721,6 +1678,11 @@ type ObservationUnitLevelRelationship {
   observationUnit: ObservationUnit
 }
 
+type ObservationUnitListResponse {
+  data: [ObservationUnit]
+  page: PageInfo
+}
+
 type ObservationUnitPosition {
   "The type of entry for this observation unit. ex. \"CHECK\", \"TEST\", \"FILLER\""
   entryType: EntryType
@@ -1803,11 +1765,6 @@ type ObservationUnitPosition {
   positionCoordinateYType: PositionCoordinateYType
 }
 
-type ObservationUnitsListResponse {
-  data: [ObservationUnit]
-  page: [ObservationUnit]
-}
-
 type ObservationUnitsSearchResponse {
   data: [ObservationUnit]
   searchResultsDbId: [ObservationUnit]
@@ -1851,8 +1808,6 @@ type ObservationVariable implements Variable {
   observationVariableName: String
   "The Permanent Unique Identifier of a Observation Variable, usually in the form of a URI"
   observationVariablePUI: String
-  "observations"
-  observations: [Observation]
   """
   MIAPPE V1.1
   
@@ -1874,7 +1829,6 @@ type ObservationVariable implements Variable {
   scientist: String
   "Variable status. (examples: \"recommended\", \"obsolete\", \"legacy\", etc.)"
   status: String
-  studies: [Study]
   "Timestamp when the Variable was added (ISO 8601)"
   submissionTimestamp: String
   "Other variable names"
@@ -1886,9 +1840,9 @@ type ObservationVariable implements Variable {
   trait: Trait
 }
 
-type ObservationVariablesListResponse {
+type ObservationVariableListResponse {
   data: [ObservationVariable]
-  page: [ObservationVariable]
+  page: PageInfo
 }
 
 type ObservationVariablesSearchResponse {
@@ -1896,19 +1850,9 @@ type ObservationVariablesSearchResponse {
   searchResultsDbId: [ObservationVariable]
 }
 
-type ObservationsListResponse {
-  data: [Observation]
-  page: [Observation]
-}
-
 type ObservationsSearchResponse {
   data: [Observation]
   searchResultsDbId: [Observation]
-}
-
-type OntologiesListResponse {
-  data: [Ontology]
-  page: [Ontology]
 }
 
 type Ontology {
@@ -1932,6 +1876,11 @@ type Ontology {
   version: String
 }
 
+type OntologyListResponse {
+  data: [Ontology]
+  page: PageInfo
+}
+
 type OntologyReference {
   "links to various ontology documentation"
   documentationLinks: [DocumentationLink]
@@ -1944,10 +1893,6 @@ type OntologyReference {
 }
 
 type OntologyTerm {
-  "Species associated with a reference"
-  reference: Reference
-  "Species associated with a referenceSet"
-  referenceSet: ReferenceSet
   "Ontology term - the label of the ontology term the termId is pointing to."
   term: String
   "Ontology term identifier - the CURIE for an ontology term. It differs from the standard GA4GH schema's :ref:`id ` in that it is a CURIE pointing to an information resource outside of the scope of the schema or its resource implementation."
@@ -2021,14 +1966,19 @@ type PedigreeNode {
   siblings: [Germplasm]
 }
 
-type PedigreeNodesListResponse {
+type PedigreeNodeListResponse {
   data: [PedigreeNode]
-  page: [PedigreeNode]
+  page: PageInfo
 }
 
 type PedigreeNodesSearchResponse {
   data: [PedigreeNode]
   searchResultsDbId: [PedigreeNode]
+}
+
+type PeopleSearchResponse {
+  data: [Person]
+  searchResultsDbId: [Person]
 }
 
 type Person {
@@ -2044,7 +1994,6 @@ type Person {
   firstName: String
   "Persons last name"
   lastName: String
-  lists: [List]
   "physical address of this person"
   mailingAddress: String
   "Persons middle name"
@@ -2053,19 +2002,13 @@ type Person {
   personDbId: String
   "phone number of this person"
   phoneNumber: String
-  programs: [Program]
   "A systems user ID associated with this person. Different from personDbId because you could have a person who is not a user of the system."
   userID: String
 }
 
-type PersonsListResponse {
+type PersonListResponse {
   data: [Person]
-  page: [Person]
-}
-
-type PersonsSearchResponse {
-  data: [Person]
-  searchResultsDbId: [Person]
+  page: PageInfo
 }
 
 type PlannedCross {
@@ -2073,8 +2016,6 @@ type PlannedCross {
   additionalInfo: AdditionalInfo
   "the type of cross"
   crossType: CrossType
-  "crosses"
-  crosses: [Cross]
   "the unique identifier for a crossing project"
   crossingProject: CrossingProject
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
@@ -2091,9 +2032,9 @@ type PlannedCross {
   status: PlannedCrossStatus
 }
 
-type PlannedCrossesListResponse {
+type PlannedCrossListResponse {
   data: [PlannedCross]
-  page: [PlannedCross]
+  page: PageInfo
 }
 
 type PlannedCrossesSearchResponse {
@@ -2118,17 +2059,15 @@ type Plate {
   program: Program
   "The type of samples taken. ex. 'DNA', 'RNA', 'Tissue', etc"
   sampleType: SampleType
-  "samples"
-  samples: [Sample]
   "The ID which uniquely identifies a `Study` within the given database server"
   study: Study
   "The ID which uniquely identifies a `Trial` within the given database server"
   trial: Trial
 }
 
-type PlatesListResponse {
+type PlateListResponse {
   data: [Plate]
-  page: [Plate]
+  page: PageInfo
 }
 
 type PlatesSearchResponse {
@@ -2154,8 +2093,6 @@ type Program {
   additionalInfo: AdditionalInfo
   "Common name for the crop which this program is for"
   commonCropName: String
-  "crossingProjects"
-  crossingProjects: [CrossingProject]
   "A URL to the human readable documentation of an object"
   documentationURL: String
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
@@ -2166,10 +2103,6 @@ type Program {
   leadPerson: Person
   "The primary objective of the program"
   objective: String
-  "observationUnits"
-  observationUnits: [ObservationUnit]
-  "plates"
-  plates: [Plate]
   "The ID which uniquely identifies the program"
   programDbId: String
   "Human readable name of the program"
@@ -2180,16 +2113,11 @@ type Program {
   <br/> 'PROJECT' represents a short term project, usually with a set time limit based on funding   
   """
   programType: ProgramType
-  "samples"
-  samples: [Sample]
-  "seedLots"
-  seedLots: [SeedLot]
-  trials: [Trial]
 }
 
-type ProgramsListResponse {
+type ProgramListResponse {
   data: [Program]
-  page: [Program]
+  page: PageInfo
 }
 
 type ProgramsSearchResponse {
@@ -2208,127 +2136,125 @@ type Query {
   "Returns a BreedingMethod object by id"
   breedingMethod(breedingMethodDbId: ID, commonCropName: String): BreedingMethod
   "Returns BreedingMethod objects"
-  breedingMethods(breedingMethodsInput: BreedingMethodsInput): BreedingMethodsListResponse
+  breedingMethods(commonCropName: String): BreedingMethodListResponse
   "Returns a CallSet object by id"
   callSet(callSetDbId: ID, commonCropName: String): CallSet
   "Returns CallSet objects"
-  callSets(callSetsInput: CallSetsInput, paging: PageInput): CallSetsListResponse
+  callSets(callSetsInput: CallSetsInput, paging: PageInput): CallSetListResponse
   "Returns CallSet objects"
   callSetsSearch(callSetInput: CallSetsInput): CallSetsSearchResponse
   "Returns Call objects"
-  calls(callsInput: CallsInput, paging: PageInput): CallsListResponse
+  calls(callsInput: CallsInput, paging: PageInput): CallListResponse
   "Returns Call objects"
   callsSearch(callInput: CallsInput): CallsSearchResponse
   "Returns Cross objects"
-  crosses(crossesInput: CrossesInput, paging: PageInput): CrossesListResponse
+  crosses(crossesInput: CrossesInput, paging: PageInput): CrossListResponse
   "Returns a CrossingProject object by id"
   crossingProject(commonCropName: String, crossingProjectDbId: ID): CrossingProject
   "Returns CrossingProject objects"
-  crossingProjects(crossingProjectsInput: CrossingProjectsInput, paging: PageInput): CrossingProjectsListResponse
+  crossingProjects(crossingProjectsInput: CrossingProjectsInput, paging: PageInput): CrossingProjectListResponse
   "Returns CrossingProject objects"
   crossingProjectsSearch(crossingProjectInput: CrossingProjectsInput): CrossingProjectsSearchResponse
   "Returns Event objects"
-  events(eventsInput: EventsInput, paging: PageInput): EventsListResponse
+  events(eventsInput: EventsInput, paging: PageInput): EventListResponse
   "Returns Event objects"
   eventsSearch(eventInput: EventsInput): EventsSearchResponse
   "Returns a GenomeMap object by id"
   genomeMap(commonCropName: String, genomeMapDbId: ID): GenomeMap
   "Returns GenomeMap objects"
-  genomeMaps(genomeMapsInput: GenomeMapsInput, paging: PageInput): GenomeMapsListResponse
+  genomeMaps(genomeMapsInput: GenomeMapsInput, paging: PageInput): GenomeMapListResponse
   "Returns GenomeMap objects"
   genomeMapsSearch(genomeMapInput: GenomeMapsInput): GenomeMapsSearchResponse
-  "Returns a Germplasm object by id"
-  germplasm(commonCropName: String, germplasmDbId: ID): Germplasm
+  "Returns Germplasm objects"
+  germplasm(commonCropName: String, germplasmInput: GermplasmInput, paging: PageInput): GermplasmListResponse
   "Returns a GermplasmAttribute object by id"
   germplasmAttribute(commonCropName: String, germplasmAttributeDbId: ID): GermplasmAttribute
   "Returns a GermplasmAttributeValue object by id"
   germplasmAttributeValue(commonCropName: String, germplasmAttributeValueDbId: ID): GermplasmAttributeValue
   "Returns GermplasmAttributeValue objects"
-  germplasmAttributeValues(germplasmAttributeValuesInput: GermplasmAttributeValuesInput, paging: PageInput): GermplasmAttributeValuesListResponse
+  germplasmAttributeValues(germplasmAttributeValuesInput: GermplasmAttributeValuesInput, paging: PageInput): GermplasmAttributeValueListResponse
   "Returns GermplasmAttributeValue objects"
   germplasmAttributeValuesSearch(germplasmAttributeValueInput: GermplasmAttributeValuesInput): GermplasmAttributeValuesSearchResponse
   "Returns GermplasmAttribute objects"
-  germplasmAttributes(germplasmAttributesInput: GermplasmAttributesInput, paging: PageInput): GermplasmAttributesListResponse
+  germplasmAttributes(germplasmAttributesInput: GermplasmAttributesInput, paging: PageInput): GermplasmAttributeListResponse
   "Returns GermplasmAttribute objects"
   germplasmAttributesSearch(germplasmAttributeInput: GermplasmAttributesInput): GermplasmAttributesSearchResponse
   "Returns Germplasm objects"
-  germplasms(germplasmsInput: GermplasmsInput, paging: PageInput): GermplasmsListResponse
-  "Returns Germplasm objects"
-  germplasmsSearch(germplasmInput: GermplasmsInput): GermplasmsSearchResponse
+  germplasmSearch(commonCropName: String, germplasmInput: GermplasmInput): GermplasmSearchResponse
   "Returns a Image object by id"
   image(commonCropName: String, imageDbId: ID): Image
   "Returns Image objects"
-  images(imagesInput: ImagesInput, paging: PageInput): ImagesListResponse
+  images(imagesInput: ImagesInput, paging: PageInput): ImageListResponse
   "Returns Image objects"
   imagesSearch(imageInput: ImagesInput): ImagesSearchResponse
   "Returns a List object by id"
   list(commonCropName: String, listDbId: ID): List
   "Returns List objects"
-  lists(listsInput: ListsInput, paging: PageInput): ListsListResponse
+  lists(listsInput: ListsInput, paging: PageInput): ListListResponse
   "Returns List objects"
   listsSearch(listInput: ListsInput): ListsSearchResponse
   "Returns a Location object by id"
   location(commonCropName: String, locationDbId: ID): Location
   "Returns Location objects"
-  locations(locationsInput: LocationsInput, paging: PageInput): LocationsListResponse
+  locations(locationsInput: LocationsInput, paging: PageInput): LocationListResponse
   "Returns Location objects"
   locationsSearch(locationInput: LocationsInput): LocationsSearchResponse
   "Returns MarkerPosition objects"
-  markerPositions(markerPositionsInput: MarkerPositionsInput, paging: PageInput): MarkerPositionsListResponse
+  markerPositions(markerPositionsInput: MarkerPositionsInput, paging: PageInput): MarkerPositionListResponse
   "Returns MarkerPosition objects"
   markerPositionsSearch(markerPositionInput: MarkerPositionsInput): MarkerPositionsSearchResponse
   "Returns a Method object by id"
   method(commonCropName: String, methodDbId: ID): Method
   "Returns Method objects"
-  methods(methodsInput: MethodsInput, paging: PageInput): MethodsListResponse
+  methods(methodsInput: MethodsInput, paging: PageInput): MethodListResponse
   "Returns a Observation object by id"
   observation(commonCropName: String, observationDbId: ID): Observation
   "Returns a ObservationUnit object by id"
   observationUnit(commonCropName: String, observationUnitDbId: ID): ObservationUnit
   "Returns ObservationUnit objects"
-  observationUnits(observationUnitsInput: ObservationUnitsInput, paging: PageInput): ObservationUnitsListResponse
+  observationUnits(observationUnitsInput: ObservationUnitsInput, paging: PageInput): ObservationUnitListResponse
   "Returns ObservationUnit objects"
   observationUnitsSearch(observationUnitInput: ObservationUnitsInput): ObservationUnitsSearchResponse
   "Returns a ObservationVariable object by id"
   observationVariable(commonCropName: String, observationVariableDbId: ID): ObservationVariable
   "Returns ObservationVariable objects"
-  observationVariables(observationVariablesInput: ObservationVariablesInput, paging: PageInput): ObservationVariablesListResponse
+  observationVariables(observationVariablesInput: ObservationVariablesInput, paging: PageInput): ObservationVariableListResponse
   "Returns ObservationVariable objects"
   observationVariablesSearch(observationVariableInput: ObservationVariablesInput): ObservationVariablesSearchResponse
   "Returns Observation objects"
-  observations(observationsInput: ObservationsInput, paging: PageInput): ObservationsListResponse
+  observations(observationsInput: ObservationsInput, paging: PageInput): ObservationListResponse
   "Returns Observation objects"
   observationsSearch(observationInput: ObservationsInput): ObservationsSearchResponse
   "Returns Ontology objects"
-  ontologies(ontologiesInput: OntologiesInput, paging: PageInput): OntologiesListResponse
+  ontologies(ontologiesInput: OntologiesInput, paging: PageInput): OntologyListResponse
   "Returns a Ontology object by id"
   ontology(commonCropName: String, ontologyDbId: ID): Ontology
   "Returns a PedigreeNode object by id"
   pedigreeNode(commonCropName: String, pedigreeNodeDbId: ID): PedigreeNode
   "Returns PedigreeNode objects"
-  pedigreeNodes(paging: PageInput, pedigreeNodesInput: PedigreeNodesInput): PedigreeNodesListResponse
+  pedigreeNodes(paging: PageInput, pedigreeNodesInput: PedigreeNodesInput): PedigreeNodeListResponse
   "Returns PedigreeNode objects"
   pedigreeNodesSearch(pedigreeNodeInput: PedigreeNodesInput): PedigreeNodesSearchResponse
+  "Returns Person objects"
+  people(paging: PageInput, peopleInput: PeopleInput): PersonListResponse
+  "Returns Person objects"
+  peopleSearch(personInput: PeopleInput): PeopleSearchResponse
   "Returns a Person object by id"
   person(commonCropName: String, personDbId: ID): Person
-  "Returns Person objects"
-  persons(paging: PageInput, personsInput: PersonsInput): PersonsListResponse
-  "Returns Person objects"
-  personsSearch(personInput: PersonsInput): PersonsSearchResponse
   "Returns PlannedCross objects"
-  plannedCrosses(paging: PageInput, plannedCrossesInput: PlannedCrossesInput): PlannedCrossesListResponse
+  plannedCrosses(paging: PageInput, plannedCrossesInput: PlannedCrossesInput): PlannedCrossListResponse
   "Returns PlannedCross objects"
   plannedCrossesSearch(plannedCrossInput: PlannedCrossesInput): PlannedCrossesSearchResponse
   "Returns a Plate object by id"
   plate(commonCropName: String, plateDbId: ID): Plate
   "Returns Plate objects"
-  plates(paging: PageInput, platesInput: PlatesInput): PlatesListResponse
+  plates(paging: PageInput, platesInput: PlatesInput): PlateListResponse
   "Returns Plate objects"
   platesSearch(plateInput: PlatesInput): PlatesSearchResponse
   "Returns a Program object by id"
   program(commonCropName: String, programDbId: ID): Program
   "Returns Program objects"
-  programs(paging: PageInput, programsInput: ProgramsInput): ProgramsListResponse
+  programs(paging: PageInput, programsInput: ProgramsInput): ProgramListResponse
   "Returns Program objects"
   programsSearch(programInput: ProgramsInput): ProgramsSearchResponse
   "Returns a Reference object by id"
@@ -2336,37 +2262,37 @@ type Query {
   "Returns a ReferenceSet object by id"
   referenceSet(commonCropName: String, referenceSetDbId: ID): ReferenceSet
   "Returns ReferenceSet objects"
-  referenceSets(paging: PageInput, referenceSetsInput: ReferenceSetsInput): ReferenceSetsListResponse
+  referenceSets(paging: PageInput, referenceSetsInput: ReferenceSetsInput): ReferenceSetListResponse
   "Returns ReferenceSet objects"
   referenceSetsSearch(referenceSetInput: ReferenceSetsInput): ReferenceSetsSearchResponse
   "Returns Reference objects"
-  references(paging: PageInput, referencesInput: ReferencesInput): ReferencesListResponse
+  references(paging: PageInput, referencesInput: ReferencesInput): ReferenceListResponse
   "Returns Reference objects"
   referencesSearch(referenceInput: ReferencesInput): ReferencesSearchResponse
   "Returns a Sample object by id"
   sample(commonCropName: String, sampleDbId: ID): Sample
   "Returns Sample objects"
-  samples(paging: PageInput, samplesInput: SamplesInput): SamplesListResponse
+  samples(paging: PageInput, samplesInput: SamplesInput): SampleListResponse
   "Returns Sample objects"
   samplesSearch(sampleInput: SamplesInput): SamplesSearchResponse
   "Returns a Scale object by id"
   scale(commonCropName: String, scaleDbId: ID): Scale
   "Returns Scale objects"
-  scales(paging: PageInput, scalesInput: ScalesInput): ScalesListResponse
+  scales(paging: PageInput, scalesInput: ScalesInput): ScaleListResponse
   "Returns a Season object by id"
   season(commonCropName: String, seasonDbId: ID): Season
   "Returns Season objects"
-  seasons(paging: PageInput, seasonsInput: SeasonsInput): SeasonsListResponse
+  seasons(paging: PageInput, seasonsInput: SeasonsInput): SeasonListResponse
   "Returns Season objects"
   seasonsSearch(seasonInput: SeasonsInput): SeasonsSearchResponse
   "Returns a SeedLot object by id"
   seedLot(commonCropName: String, seedLotDbId: ID): SeedLot
   "Returns SeedLot objects"
-  seedLots(paging: PageInput, seedLotsInput: SeedLotsInput): SeedLotsListResponse
+  seedLots(paging: PageInput, seedLotsInput: SeedLotsInput): SeedLotListResponse
   "Returns SeedLot objects"
   seedLotsSearch(seedLotInput: SeedLotsInput): SeedLotsSearchResponse
   "Returns Study objects"
-  studies(paging: PageInput, studiesInput: StudiesInput): StudiesListResponse
+  studies(paging: PageInput, studiesInput: StudiesInput): StudyListResponse
   "Returns Study objects"
   studiesSearch(studyInput: StudiesInput): StudiesSearchResponse
   "Returns a Study object by id"
@@ -2374,11 +2300,11 @@ type Query {
   "Returns a Trait object by id"
   trait(commonCropName: String, traitDbId: ID): Trait
   "Returns Trait objects"
-  traits(paging: PageInput, traitsInput: TraitsInput): TraitsListResponse
+  traits(paging: PageInput, traitsInput: TraitsInput): TraitListResponse
   "Returns a Trial object by id"
   trial(commonCropName: String, trialDbId: ID): Trial
   "Returns Trial objects"
-  trials(paging: PageInput, trialsInput: TrialsInput): TrialsListResponse
+  trials(paging: PageInput, trialsInput: TrialsInput): TrialListResponse
   "Returns Trial objects"
   trialsSearch(trialInput: TrialsInput): TrialsSearchResponse
   "Returns a Variant object by id"
@@ -2386,11 +2312,11 @@ type Query {
   "Returns a VariantSet object by id"
   variantSet(commonCropName: String, variantSetDbId: ID): VariantSet
   "Returns VariantSet objects"
-  variantSets(paging: PageInput, variantSetsInput: VariantSetsInput): VariantSetsListResponse
+  variantSets(paging: PageInput, variantSetsInput: VariantSetsInput): VariantSetListResponse
   "Returns VariantSet objects"
   variantSetsSearch(variantSetInput: VariantSetsInput): VariantSetsSearchResponse
   "Returns Variant objects"
-  variants(paging: PageInput, variantsInput: VariantsInput): VariantsListResponse
+  variants(paging: PageInput, variantsInput: VariantsInput): VariantListResponse
   "Returns Variant objects"
   variantsSearch(variantInput: VariantsInput): VariantsSearchResponse
 }
@@ -2426,6 +2352,11 @@ type Reference {
   species: OntologyTerm
   "variants"
   variants: [Variant]
+}
+
+type ReferenceListResponse {
+  data: [Reference]
+  page: PageInfo
 }
 
 type ReferenceSet {
@@ -2470,19 +2401,14 @@ type ReferenceSet {
   variants: [Variant]
 }
 
-type ReferenceSetsListResponse {
+type ReferenceSetListResponse {
   data: [ReferenceSet]
-  page: [ReferenceSet]
+  page: PageInfo
 }
 
 type ReferenceSetsSearchResponse {
   data: [ReferenceSet]
   searchResultsDbId: [ReferenceSet]
-}
-
-type ReferencesListResponse {
-  data: [Reference]
-  page: [Reference]
 }
 
 type ReferencesSearchResponse {
@@ -2551,9 +2477,9 @@ type Sample {
   well: String
 }
 
-type SamplesListResponse {
+type SampleListResponse {
   data: [Sample]
-  page: [Sample]
+  page: PageInfo
 }
 
 type SamplesSearchResponse {
@@ -2609,9 +2535,9 @@ type Scale {
   validValues: ValidValues
 }
 
-type ScalesListResponse {
+type ScaleListResponse {
   data: [Scale]
-  page: [Scale]
+  page: PageInfo
 }
 
 type Season {
@@ -2623,9 +2549,9 @@ type Season {
   year: Int
 }
 
-type SeasonsListResponse {
+type SeasonListResponse {
   data: [Season]
-  page: [Season]
+  page: PageInfo
 }
 
 type SeasonsSearchResponse {
@@ -2660,8 +2586,6 @@ type SeedLot {
   lastUpdated: String
   "The unique identifier for a Location"
   location: Location
-  "observationUnits"
-  observationUnits: [ObservationUnit]
   "The unique DbId of the breeding program this Seed Lot belongs to"
   program: Program
   "Unique DbId for the Seed Lot"
@@ -2678,6 +2602,11 @@ type SeedLot {
   toSeedLotTransactions: [SeedLotTransaction]
   "A description of the things being counted in a SeedLot (seeds, bulbs, kg, tree, etc)"
   units: String
+}
+
+type SeedLotListResponse {
+  data: [SeedLot]
+  page: PageInfo
 }
 
 type SeedLotTransaction {
@@ -2699,11 +2628,6 @@ type SeedLotTransaction {
   transactionTimestamp: String
   "A description of the things being transferred between SeedLots in a transaction (seeds, bulbs, kg, etc)"
   units: String
-}
-
-type SeedLotsListResponse {
-  data: [SeedLot]
-  page: [SeedLot]
 }
 
 type SeedLotsSearchResponse {
@@ -2734,11 +2658,6 @@ type StorageType {
   germplasm: Germplasm
 }
 
-type StudiesListResponse {
-  data: [Study]
-  page: [Study]
-}
-
 type StudiesSearchResponse {
   data: [Study]
   searchResultsDbId: [Study]
@@ -2749,7 +2668,6 @@ type Study {
   active: Boolean
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
-  callSets: [CallSet]
   "Common name for the crop associated with this study"
   commonCropName: String
   "List of contact entities associated with this study"
@@ -2772,8 +2690,6 @@ type Study {
   MIAPPE V1.1 (DM-57) Environment - Environmental parameters that were kept constant throughout the study and did not change between observation units or assays. Environment characteristics that vary over time, i.e. environmental variables, should be recorded as Observed Variables (see below).
   """
   environmentParameters: [EnvironmentParameters]
-  "events"
-  events: [Event]
   "The experimental and statistical design full description plus a category PUI taken from crop research ontology or agronomy ontology"
   experimentalDesign: ExperimentalDesign
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
@@ -2797,8 +2713,6 @@ type Study {
   For more information on Observation Levels, please review the <a target="_blank" href="https://wiki.brapi.org/index.php/Observation_Levels">Observation Levels documentation</a>. 
   """
   observationLevels: [ObservationUnitHierarchyLevel]
-  "observationUnits"
-  observationUnits: [ObservationUnit]
   "MIAPPE V1.1 (DM-25) Observation unit description - General description of the observation units in the study."
   observationUnitsDescription: String
   """
@@ -2806,13 +2720,7 @@ type Study {
   
   This list is intended to be the wishlist of variables to collect in this study. It may or may not match the set of variables used in the collected observation records. 
   """
-  observationVariables: [ObservationVariable]
-  "observations"
-  observations: [Observation]
-  "plates"
-  plates: [Plate]
-  "samples"
-  samples: [Sample]
+  observationVariables(observationVariablesInput: ObservationVariablesInput, paging: PageInput): ObservationVariableListResponse
   "List of seasons over which this study was performed."
   seasons: [String]
   """
@@ -2847,8 +2755,11 @@ type Study {
   studyType: String
   "The ID which uniquely identifies a trial"
   trial: Trial
-  "variantSets"
-  variantSets: [VariantSet]
+}
+
+type StudyListResponse {
+  data: [Study]
+  page: PageInfo
 }
 
 type Synonym {
@@ -2926,9 +2837,9 @@ type Trait {
   traitPUI: String
 }
 
-type TraitsListResponse {
+type TraitListResponse {
   data: [Trait]
-  page: [Trait]
+  page: PageInfo
 }
 
 type Treatment {
@@ -2965,16 +2876,10 @@ type Trial {
   endDate: String
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
   externalReferences: [ExternalReference]
-  "observationUnits"
-  observationUnits: [ObservationUnit]
-  "plates"
-  plates: [Plate]
   "A program identifier to search for"
   program: Program
   "MIAPPE V1.1 (DM-9) Associated publication - An identifier for a literature publication where the investigation is described. Use of DOIs is recommended."
   publications: [Publication]
-  "samples"
-  samples: [Sample]
   "The date this trial started"
   startDate: String
   studies: [Study]
@@ -3000,9 +2905,9 @@ type Trial {
   trialPUI: String
 }
 
-type TrialsListResponse {
+type TrialListResponse {
   data: [Trial]
-  page: [Trial]
+  page: PageInfo
 }
 
 type TrialsSearchResponse {
@@ -3033,10 +2938,10 @@ type ValidValuesCategory {
 type Variant {
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
-  alleleMatrices: [AlleleMatrix]
+  alleleMatrices(alleleMatrixInput: AlleleMatrixInput, paging: PageInput): AlleleMatrixListResponse
   "Set of Analysis descriptors for this VariantSet"
   analysis: [String]
-  calls: [Call]
+  calls(callsInput: CallsInput, paging: PageInput): CallListResponse
   "Similar to \"cipos\", but for the variant's end position (which is derived from start + svlen)."
   ciend: [Int]
   """
@@ -3097,10 +3002,15 @@ type Variant {
   variantType: String
 }
 
+type VariantListResponse {
+  data: [Variant]
+  page: PageInfo
+}
+
 type VariantSet {
   "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
   additionalInfo: AdditionalInfo
-  alleleMatrices: [AlleleMatrix]
+  alleleMatrices(alleleMatrixInput: AlleleMatrixInput, paging: PageInput): AlleleMatrixListResponse
   "Set of Analysis descriptors for this VariantSet"
   analysis: [Analysis]
   """
@@ -3111,8 +3021,8 @@ type VariantSet {
   availableFormats: [AvailableFormat]
   "The number of CallSets included in this VariantSet"
   callSetCount: Int
-  callSets: [CallSet]
-  calls: [Call]
+  callSets(callSetsInput: CallSetsInput, paging: PageInput): CallSetListResponse
+  calls(callsInput: CallsInput, paging: PageInput): CallListResponse
   "An array of external reference ids. These are references to this piece of data in an external system. Could be a simple string or a URI."
   externalReferences: [ExternalReference]
   """
@@ -3131,22 +3041,17 @@ type VariantSet {
   "The human readable name for a VariantSet"
   variantSetName: String
   "variants"
-  variants: [Variant]
+  variants(paging: PageInput, variantsInput: VariantsInput): VariantListResponse
 }
 
-type VariantSetsListResponse {
+type VariantSetListResponse {
   data: [VariantSet]
-  page: [VariantSet]
+  page: PageInfo
 }
 
 type VariantSetsSearchResponse {
   data: [VariantSet]
   searchResultsDbId: [VariantSet]
-}
-
-type VariantsListResponse {
-  data: [Variant]
-  page: [Variant]
 }
 
 type VariantsSearchResponse {
@@ -3491,21 +3396,6 @@ input AvailableFormatInput {
 }
 
 input BreedingMethodInput {
-  "A shortened version of the human readable name for a Breeding Method"
-  abbreviation: String
-  "the unique identifier for this breeding method"
-  breedingMethodDbId: String
-  "the human readable identifier for this breeding method"
-  breedingMethodName: String
-  "human readable description of the breeding method"
-  description: String
-  "germplasm"
-  germplasm: [GermplasmInput]
-  "pedigreeNodes"
-  pedigreeNodes: [PedigreeNodeInput]
-}
-
-input BreedingMethodsInput {
   "A shortened version of the human readable name for a Breeding Method"
   abbreviation: String
   "the unique identifier for this breeding method"
@@ -4691,72 +4581,6 @@ input GermplasmParentInput {
   pedigreeNode: PedigreeNodeInput
 }
 
-input GermplasmsInput {
-  """
-  A collection of unique identifiers for materials or germplasm within a genebank
-  
-  MCPD (v2.1) (ACCENUMB) 2. This is the unique identifier for accessions within a genebank, and is assigned when a sample is entered into the genebank collection (e.g. "PI 113869").
-  """
-  accessionNumbers: [String]
-  "List of the full binomial name (scientific name) to identify a germplasm"
-  binomialNames: [String]
-  "A specific panel/collection/population name this germplasm belongs to."
-  collections: [String]
-  """
-  The BrAPI Common Crop Name is the simple, generalized, widely accepted name of the organism being researched. It is most often used in multi-crop systems where digital resources need to be divided at a high level. Things like 'Maize', 'Wheat', and 'Rice' are examples of common crop names.
-  
-  Use this parameter to only return results associated with the given crops. 
-  
-  Use `GET /commoncropnames` to find the list of available crops on a server.
-  """
-  commonCropNames: [String]
-  "A familyCode representing the family this germplasm belongs to."
-  familyCodes: [String]
-  "List of Genus names to identify germplasm"
-  genus: [String]
-  "List of IDs which uniquely identify germplasm to search for"
-  germplasmDbIds: [String]
-  "List of human readable names to identify germplasm to search for"
-  germplasmNames: [String]
-  "List of Permanent Unique Identifiers to identify germplasm"
-  germplasmPUIs: [String]
-  """
-  The code for the institute that maintains the material. 
-  <br/> MCPD (v2.1) (INSTCODE) 1. FAO WIEWS code of the institute where the accession is maintained. The codes consist of the 3-letter ISO 3166 country code of the country where the institute is located plus a number (e.g. PER001). The current set of institute codes is available from http://www.fao.org/wiews. For those institutes not yet having an FAO Code, or for those with "obsolete" codes, see "Common formatting rules (v)".
-  """
-  instituteCodes: [String]
-  "Search for Germplasm with these parents"
-  parentDbIds: [String]
-  "Search for Germplasm with these children"
-  progenyDbIds: [String]
-  """
-  A BrAPI Program represents the high level organization or group who is responsible for conducting trials and studies. Things like Breeding Programs and Funded Projects are considered BrAPI Programs. 
-  
-  Use this parameter to only return results associated with the given programs. 
-  
-  Use `GET /programs` to find the list of available programs on a server.
-  """
-  programDbIds: [String]
-  """
-  Use this parameter to only return results associated with the given program names. Program names are not required to be unique.
-  
-  Use `GET /programs` to find the list of available programs on a server.
-  """
-  programNames: [String]
-  "List of Species names to identify germplasm"
-  species: [String]
-  "List of study identifiers to search for"
-  studyDbIds: [String]
-  "List of study names to filter search results"
-  studyNames: [String]
-  "List of alternative names or IDs used to reference this germplasm"
-  synonyms: [String]
-  "The ID which uniquely identifies a trial to search for"
-  trialDbIds: [String]
-  "The human readable name of a trial to search for"
-  trialNames: [String]
-}
-
 input GrowthFacilityInput {
   "MIAPPE V1.1 (DM-27) Type of growth facility - Type of growth facility in which the study was carried out, in the form of an accession number from the Crop Ontology."
   PUI: String
@@ -5937,34 +5761,7 @@ input PedigreeNodesInput {
   trialNames: [String]
 }
 
-input PersonInput {
-  "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
-  additionalInfo: AdditionalInfoInput
-  "description of this person"
-  description: String
-  "email address for this person"
-  emailAddress: String
-  "Filter by External References"
-  externalReferences: [ExternalReferenceInput]
-  "Persons first name"
-  firstName: String
-  "Persons last name"
-  lastName: String
-  lists: [ListInput]
-  "physical address of this person"
-  mailingAddress: String
-  "Persons middle name"
-  middleName: String
-  "Unique ID for a person"
-  personDbId: String
-  "phone number of this person"
-  phoneNumber: String
-  programs: [ProgramInput]
-  "A systems user ID associated with this person. Different from personDbId because you could have a person who is not a user of the system."
-  userID: String
-}
-
-input PersonsInput {
+input PeopleInput {
   """
   The BrAPI Common Crop Name is the simple, generalized, widely accepted name of the organism being researched. It is most often used in multi-crop systems where digital resources need to be divided at a high level. Things like 'Maize', 'Wheat', and 'Rice' are examples of common crop names.
   
@@ -6003,6 +5800,33 @@ input PersonsInput {
   programNames: [String]
   "A systems user ID associated with this person. Different from personDbId because you could have a person who is not a user of the system."
   userIDs: [String]
+}
+
+input PersonInput {
+  "A free space containing any additional information related to a particular object. A data source may provide any JSON object, unrestricted by the BrAPI specification."
+  additionalInfo: AdditionalInfoInput
+  "description of this person"
+  description: String
+  "email address for this person"
+  emailAddress: String
+  "Filter by External References"
+  externalReferences: [ExternalReferenceInput]
+  "Persons first name"
+  firstName: String
+  "Persons last name"
+  lastName: String
+  lists: [ListInput]
+  "physical address of this person"
+  mailingAddress: String
+  "Persons middle name"
+  middleName: String
+  "Unique ID for a person"
+  personDbId: String
+  "phone number of this person"
+  phoneNumber: String
+  programs: [ProgramInput]
+  "A systems user ID associated with this person. Different from personDbId because you could have a person who is not a user of the system."
+  userID: String
 }
 
 input PlannedCrossInput {
