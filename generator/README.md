@@ -26,4 +26,8 @@ to change the version of BrAPI used in the file name edit the *brapiVersion* in
 
 To configure the generator see https://github.com/plantbreeding/brapi-schema-tools
 
+### OpenAPI Components directory
 
+These [files](../Specification/OpenAPI-Components) supplement the [Json Schema files](../Specification/BrAPI-Schema) 
+in the Generation of the [OpenAPI Specification](../Specification/Generated) by
+the Schema Tools.
