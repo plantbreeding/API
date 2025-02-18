@@ -22,20 +22,21 @@ ignored equally.
 Most endpoints in BrAPI use page index numbers to determine how to get
 the next page of data. Page numbers start at zero, so the first page
 will be page 0 (zero). When appropriate, a request will have two
-parameters for paging: page and pageSize. page allows the client to
-request a specific page number. Page numbers start at zero, so the first
-page will be ?page=0. pageSize allows the client to control the maximum
-number of records that will be returned per page. A typical paged
-response will have four fields: currentPage, pageSize, totalCount and
-totalPages. currentPage is the number for the current returned page. In
-most cases, this will be a confirmation of the requested page parameter.
-If page is not populated in the request, then currentPage should have
-the default value zero, indicating the first page of data was retrieved
-by default. pageSize indicates the number of records in the current
-response page. totalCount indicates the total number of records
-available in the unpaged super set. totalPages indicates the total
-number of pages available and can be calculated with the formula
-totalCount / requested pageSize.
+parameters for paging: page and pageSize. If these query parameters are
+omitted from the request, the defaults will be page=0 and pageSize=1000.
+page allows the client to request a specific page number. Page numbers
+start at zero, so the first page will be ?page=0. pageSize allows the
+client to control the maximum number of records that will be returned
+per page. A typical paged response will have four fields: currentPage,
+pageSize, totalCount and totalPages. currentPage is the number for the
+current returned page. In most cases, this will be a confirmation of the
+requested page parameter. If page is not populated in the request, then
+currentPage should have the default value zero, indicating the first
+page of data was retrieved by default. pageSize indicates the number
+of records in the current response page. totalCount indicates the total
+number of records available in the unpaged super set. totalPages
+indicates the total number of pages available and can be calculated
+with the formula totalCount / requested pageSize.
 
 Note: A small subset of BrAPI endpoints use a nextPageToken instead of
 an page number. These endpoints are related to Genotyping and the
