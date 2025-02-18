@@ -1,8 +1,8 @@
-BrAPI-Core Concept Dictionary
-==============
+BrAPI-Phenotyping Concept Dictionary
+=====================================
 
 Events
------
+------
 
 An event is discrete occurrence at a particular time in the experiment. Events may be 
 the realization of Treatments or parts of Treatments, or may be confounding to 
@@ -17,7 +17,7 @@ chemicals, mowing, observation, weeding, puddling, flood_level, other
 
 
 Images
------
+------
 
 Calls for retrieving, storing, and updating images and image metadata
 
@@ -49,7 +49,7 @@ Method "estimation" or "drone image processing".
 
 
 Observation Units
-------
+------------------
 
 API to retrieve and submit data regarding Observation Units. An Observation Unit is 
 anything that is being observed. Typically, this is a Plot or a Plant, but it could 
@@ -59,14 +59,14 @@ Observation Levels documentation.
 
 
 Observation Variables
-------
+-----------------------
 
 API to retrieve list and details of observation variables. An observation variable 
 is composed by the unique combination of one Trait, one Method and one Scale.
 
 
 Observations
-------
+-------------
 
 API to manage the details of basic phenotypic Observations. An Observation is a 
 value assigned for a specific ObservationVariable when observing a specific 
@@ -75,7 +75,7 @@ ObservationUnit.
 
 
 Ontologies
-------
+------------
 
 API to manage the details of stored Ontologies. This could be a reference a local 
 Ontology or a remote public Ontology.
@@ -83,7 +83,7 @@ Ontology or a remote public Ontology.
 
 
 Scales
------
+-------
 
 API to manage the details of observation variable Scales. An observation variable is 
 composed by the unique combination of one Trait, one Method and one Scale. A Scale 
@@ -94,7 +94,7 @@ Variable with the Scale "inches" or "pixels".
 
 
 Traits
-------
+-------
 
 API to manage the details of observation variable Traits. An observation variable is 
 composed by the unique combination of one Trait, one Method and one Scale. A Trait 

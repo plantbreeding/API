@@ -1,8 +1,8 @@
 BrAPI-Genotyping Concept Dictionary
-==============
+====================================
 
 Allele Matrix
------
+--------------
 
 The Allele Matrix object is used to describe a matrix of genotyping results. This 2d 
 array of data reduces the overall size of the response for larger datasets, when 
@@ -10,7 +10,7 @@ compared to the Calls endpoints. This makes genotype data retrieval faster and e
 
 
 CallSet
------
+-------
 
 A CallSet represents a Sample that was used during some sequencing event. In most 
 cases, the CallSet will have a 1-to-1 relationship with a given Sample. However, in 
@@ -28,7 +28,7 @@ with respect to a variant, as determined by some analysis of experimental data.
 
 
 Genome Maps
-------
+------------
 
 Notes on the GenomeMaps objects:
 
@@ -40,7 +40,7 @@ Notes on the GenomeMaps objects:
 
 
 Plates
-------
+-------
 
 API methods for tracking/managing Plates which contain Samples and related meta-data. 
 A Plate is usually a plastic tray full of Samples, or a collection of test tubes 
@@ -48,7 +48,7 @@ grouped together.
 
 
 Reference Sets
-------
+----------------
 
 From GA4GH Variants schema documentation
 
@@ -62,7 +62,7 @@ expected to have unique names within a ReferenceSet
 
 
 References
-------
+-----------
 
 From GA4GH Variants schema documentation
 
@@ -76,7 +76,7 @@ expected to have unique names within a ReferenceSet
 
 
 Samples
------
+-------
 
 API methods for tracking/managing plant samples and related meta-data. A BrAPI 
 Sample is the set of identifiers and metadata associated with a physical piece of 
@@ -86,12 +86,12 @@ analysis procedures (spectra, genotyping, etc).
 
 
 VariantSets
------
+-------------
 
 
 
 Variants
------
+----------
 
 A Variant describes a site of interest in a genetic sequence. It is usually described in terms of being compared to a Reference.
 
@@ -99,7 +99,7 @@ A Variant may also describe a more traditional marker, which can be positioned o
 
 
 Vendor Samples
------
+---------------
 
 This interface is specific to facilities that performs an external analysis, such as genotyping facilities. The interface should be implemented by that facility's server. The breeding database is the client of this interface.
 

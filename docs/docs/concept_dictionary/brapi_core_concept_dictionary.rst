@@ -1,5 +1,5 @@
 BrAPI-Core Concept Dictionary
-==============
+==============================
 
 Crop
 -----
@@ -26,7 +26,7 @@ Maintaining information about people
 
 
 Program
-------
+-------
 
 A BrAPI Program represents the high level organization or group who is responsible for conducting 
 trials and studies. Things like Breeding Programs and Funded Projects are considered BrAPI Programs. 
