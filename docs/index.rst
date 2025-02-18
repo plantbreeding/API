@@ -15,6 +15,7 @@ Welcome to BrAPI's documentation!
    /docs/get_started/Get_Started
    /docs/community/BrAPI_Community
    /docs/best_practices/best_practices_index
+   /docs/concept_dictionary/concept_dictionary_index
 
 
 Indices and tables
