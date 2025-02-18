@@ -1,5 +1,5 @@
 BrAPI Concept Dictionary
-==============
+=========================
 .. toctree::
    :maxdepth: 2
    :hidden:
